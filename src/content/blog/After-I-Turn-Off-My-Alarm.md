@@ -12,7 +12,7 @@ heroImage: '/post-1-pic.jpg'
 
 ![点击有惊喜](../../../public/icons8-alarm.gif)
 
-<audio controls src="../../Resource/sound/apple-alarm-sound.mp3"></audio>
+<audio controls src="../../../public/apple-alarm-sound.mp3" title="Title"></audio>
 
 *多么悦耳呵呵呵, 开个玩笑.*
 
