@@ -1,0 +1,30 @@
+---
+// src/components/Comment.astro
+const {
+  repo = "你的用户名/你的仓库名",
+  repoId = "你的-repo-id",
+  category = "你的Discussions分类",
+  categoryId = "你的-category-id",
+  mapping = "pathname",
+  theme = "light",
+  lang = "en"
+} = Astro.props;
+---
+
+<div id="giscus-comments" class="mt-8">
+    <script src="https://giscus.app/client.js"
+    data-repo="skywalker23241/visible-velocity"
+    data-repo-id="R_kgDOOZeiLQ"
+    data-category="General"
+    data-category-id="DIC_kwDOOZeiLc4CpHLs"
+    data-mapping="pathname"
+    data-strict="0"
+    data-reactions-enabled="1"
+    data-emit-metadata="0"
+    data-input-position="bottom"
+    data-theme="preferred_color_scheme"
+    data-lang="zh-CN"
+    crossorigin="anonymous"
+    async>
+</script>
+</div>
