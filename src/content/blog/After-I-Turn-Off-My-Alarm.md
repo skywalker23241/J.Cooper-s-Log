@@ -10,9 +10,9 @@ heroImage: '/post-1-pic.jpg'
 
 *还记得苹果默认闹钟的 "叮叮叮~" be like.*
 
-![点击有惊喜](../../../public/icons8-alarm.gif)
+![点击有惊喜](/icons8-alarm.gif)
 
-<audio controls src="../../../public/apple-alarm-sound.mp3" title="Title"></audio>
+<audio controls src="/audio/apple-alarm-sound.mp3" title="Title"></audio>
 
 *多么悦耳呵呵呵, 开个玩笑.*
 
