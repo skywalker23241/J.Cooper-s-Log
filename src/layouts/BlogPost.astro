@@ -12,6 +12,7 @@ const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
 
 <html lang="en">
 	<head>
+		
 		<BaseHead title={title} description={description} />
 		<style>
 			main {
@@ -53,6 +54,8 @@ const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
 			}
 		</style>
 
+		
+
 		<script type="text/javascript">
 			(function(c,l,a,r,i,t,y){
 				c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
@@ -61,6 +64,16 @@ const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
 			})(window, document, "clarity", "script", "r4ew4dl716");
 		</script>
 		
+		<!-- Google tag (gtag.js) -->
+		<script async src="https://www.googletagmanager.com/gtag/js?id=G-DKECP77S2Y"></script>
+		<script>
+		window.dataLayer = window.dataLayer || [];
+		function gtag(){dataLayer.push(arguments);}
+		gtag('js', new Date());
+
+		gtag('config', 'G-DKECP77S2Y');
+		</script>
+
 	</head>
 
 	<body>
