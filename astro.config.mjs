@@ -5,6 +5,6 @@ import sitemap from '@astrojs/sitemap';
 
 // https://astro.build/config
 export default defineConfig({
-	site: 'https://example.com',
+	site: 'https://jcooper-s-log.netlify.app/',
 	integrations: [mdx(), sitemap()],
 });
