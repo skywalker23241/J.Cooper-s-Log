@@ -18,14 +18,6 @@
 }
 
 @font-face {
-	font-family: 'WebKaiTi'; /* Give it a distinct name */
-	src: url('/fonts/KaiTi.ttf') format('ttf');
-	/* Specify weight/style if applicable */
-	font-weight: normal;
-	font-style: normal;
-	font-display: swap;
-  }
-@font-face {
 	font-family: 'MapleMono';
 	src: url('/fonts/MapleMono-Regular.woff2') format('woff2');
 	font-weight: 400;
@@ -161,19 +153,4 @@ hr {
 	clip-path: inset(50%);
 	/* added line to stop words getting smushed together (as they go onto separate lines and some screen readers do not understand line feeds as a space */
 	white-space: nowrap;
-}
-
-/* Apply the combined font stack to blog content elements */
-article p,
-article li,
-article blockquote {
-  /* 1. Try MapleMono (for English/numbers)
-     2. Try 楷体 (for Chinese characters MapleMono doesn't have)
-     3. Fallback generics */
-  font-family: 'MapleMono', "WebKaiTi", monospace, serif;
-}
-
-/* Keep code blocks explicitly MapleMono (or your preferred code font) */
-article code {
-   font-family: 'MapleMono', monospace;
 }
