@@ -2,7 +2,7 @@
 title: '关掉闹钟之后,我重新开启了我的生物钟'
 description: '本来早上这篇写的好好的,不知为何手机端的github被杀后台了,只能晚上重写了,不过也是让我意识到自己组织语言的水平真的有够弱的呵呵,就在这里重新写一下吧.'
 pubDate: 'Fri Mar 28 23:59:24 PDT 2025'
-heroImage: '/post-1-pic.jpg'
+heroImage: '/post-1-head-pic.webp'
 ---
 ### 导言
 
