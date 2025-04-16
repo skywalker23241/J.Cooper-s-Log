@@ -12,7 +12,12 @@
     "@astrojs/mdx": "^4.2.4",
     "@astrojs/rss": "^4.0.11",
     "@astrojs/sitemap": "^3.3.0",
+    "@astrojs/tailwind": "^6.0.2",
     "astro": "^5.6.2",
+    "astro-color-scheme": "^1.1.5",
     "astro-google-analytics": "^1.0.3"
+  },
+  "devDependencies": {
+    "tailwindcss": "^3.4.1"
   }
 }
