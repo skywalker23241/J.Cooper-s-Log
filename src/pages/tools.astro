@@ -1,0 +1,318 @@
+---
+import Layout from '../layouts/BlogPost.astro'; // 如果你布局文件路径不同请调整
+---
+
+<Layout
+	title="Tools"
+	description="一些网上冲浪的好工具."
+	pubDate={new Date('April 17 2025')}
+>
+  <main class="max-w-3xl mx-auto px-4 py-12">
+    <h1 class="text-3xl font-bold mb-6">Cooper's Tool Box</h1>
+    <p class="text-gray-600 mb-8">
+      这里记录了我日常工作和学习中常用的优质工具，涵盖 SEO、写作、效率、图片等领域。内容会不断更新，欢迎(Ctrl+D)收藏！
+    </p>
+
+    <!-- 📌 目录导航 -->
+    <nav class="mb-10 border-l-4 border-blue-200 pl-4">
+        <p class="font-semibold mb-2">快速导航</p>
+        <ul class="space-y-1 text-blue-600 text-sm">
+          <li><a href="#seo-tools" class="hover:underline">SEO 工具</a></li>
+          <li><a href="#ai-tools" class="hover:underline">AI 工具</a></li>
+          <li><a href="#design-tools" class="hover:underline">设计工具</a></li>
+          <li><a href="#wallpaper-tools" class="hover:underline">壁纸工具</a></li>
+        </ul>
+    </nav>
+
+    <!-- SEO 工具 -->
+    <section id="seo-tools" class="mb-8">
+      <h2 class="text-xl font-semibold mb-2">SEO 工具</h2>
+      <ul class="list-disc list-inside space-y-1 text-gray-700">
+        <li>
+          <a href="https://ahrefs.com" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:underline">
+            Ahrefs
+          </a> - 全面的网站分析和反链监控工具
+        </li>
+        <li>
+          <a href="https://www.screamingfrog.co.uk/seo-spider/" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:underline">
+            Screaming Frog
+          </a> - 网站爬虫工具，用于技术 SEO 审核
+        </li>
+        <li>
+          <a href="https://search.google.com/search-console" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:underline">
+            Google Search Console
+          </a> - 必备的站点表现监控平台
+        </li>
+        <li>
+            <a href="https://devakatalk.com/" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:underline">
+            跨境电商独立站网址导航-谷歌大叔 
+            </a> - 乌克兰 SEO 分析师 Serhii Koksharov 创办的专业博客, 其中有一个javaseo的工具很好用
+        </li>
+        <li>
+            <a href="https://yoast.com/" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:underline">
+            Yoast 
+            </a> - 老牌seo工具, 主要是wordpress的插件, 但是也有一些免费的工具
+        </li>
+        <li>
+            <a href=https://primaryposition.com/blog" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:underline">
+            Primary Position 
+            </a> - 红迪网r/seo管理员的博客,里面文章也挺不错的
+        </li>
+        <li>
+            <a href="https://sparktoro.com/" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:underline">
+            SparkToro 
+            </a> - Rand Fishkin（Moz 的联合创始人）和 Casey Henry 创办的“受众智能”平台.
+        </li>
+        <li>
+            <a href="https://search.google.com/test/rich-results" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:underline">
+            Google Rich Results Test 
+            </a> - 谷歌的结构化数据测试工具, 主要是用来测试schema的
+        </li>
+        <li>
+            <a href="https://www.webpagetest.org/" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:underline">
+            WebPageTest
+            </a> - 网站性能测试工具, 可以测试网站的加载速度和性能
+        </li>
+        <li>
+            <a href="https://rapidtags.io/tiktok" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:underline">
+            RapidTags
+            </a> - TikTok标签生成器, 可以根据视频内容生成相关的标签
+        </li>
+        <li>
+            <a href="https://hemingwayapp.com/" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:underline">
+            Hemingway App
+            </a> - 英文写作风格检查工具, 可以帮助你提高写作质量和可读性
+        </li>
+        <li>
+            <a href="https://status.search.google.com/products/rGHU1u87FJnkP6W2GwMi/history" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:underline">
+            Google Search Status Dashboard
+            </a> - 谷歌搜索状态仪表盘, 可以查看谷歌搜索的最新状态和历史记录
+        </li>
+        <li>
+            <a href="https://smallseotools.com/" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:underline">
+            Small SEO Tools
+            </a> - 免费的SEO工具集合, 包括关键词分析、反向链接检查等 
+        </li>
+        <li>
+            <a href="https://www.serprobot.com/" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:underline">
+            SERP Robot
+            </a> - SERP排名跟踪工具, 可以帮助你监控关键词排名和竞争对手分析,可以免费雇佣一个机器人.
+        </li>
+      </ul>
+    </section>
+
+    <!-- AI工具 -->
+    <section id="ai-tools" class="mb-8">
+      <h2 class="text-xl font-semibold mb-2">AI 工具</h2>
+      <ul class="list-disc list-inside space-y-1 text-gray-700">
+      <li>
+        <a href="https://openrouter.ai/" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:underline">
+        OpenRouter
+        </a> - 由 OpenAI 和 Cohere 提供的 AI 工具集合, 包括文本生成、翻译等功能,可以白嫖api key.
+      </li>
+      <li>
+        <a href="https://chatgpt.com/" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:underline">
+        ChatGPT
+        </a> - OpenAI 的聊天机器人, 可以进行对话、问答等功能.
+      </li>
+      <li>
+        <a href="https://grok.com/" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:underline">
+        Grok
+        </a> - 由 x.com 提供的 AI 工具集合, 包括文本生成、翻译等功能.
+      </li>
+      <li>
+        <a href="https://gemini.google.com/app" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:underline">
+        Gemini
+        </a> - 由谷歌提供的 AI 工具集合, 包括文本生成、翻译等功能.
+      </li>
+      <li>
+        <a href="https://chat.deepseek.com/" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:underline">
+        DeepSeek
+        </a> - 由 DeepMind 提供的 AI 工具集合, 包括文本生成、翻译等功能.
+      </li>
+      <li>
+        <a href="https://notebooklm.google.com/" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:underline">
+        NotebookLM
+        </a> - 由谷歌提供的笔记本工具集合, 包括文本生成、检索和ai对话等功能. 
+      </li>
+      <li>
+        <a href="https://aizex.net/plusPool" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:underline">
+        Aizex
+        </a> - 一个ai共享合租平台,可以用付费模型,缺点是付费lol.
+      </li>
+      <li>
+        <a href="https://seowaimao.com/" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:underline">
+        跨境电商独立站网址导航-谷歌大叔 
+        </a> - 很多seo工具的一个汇总网站,还有关键词查询工具
+      </li>
+      <li>
+        <a href="https://metaso.cn/" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:underline">
+        MetaSo 
+        </a> - 秘塔ai,适合学术研究.
+      </li>
+      <li>
+        <a href="https://poe.com/" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:underline">
+        Poe
+        </a> - 由 Quora 提供的 AI 工具集合, 包括文本生成、翻译等功能.
+      </li>
+      <li>
+        <a href="https://www.perplexity.ai/" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:underline">
+        Perplexity
+        </a> - 由 Perplexity 提供的 AI 工具集合, 包括文本生成、翻译等功能. 
+      </li>
+      <li>
+        <a href="https://frosting.ai/" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:underline">
+        Frosting
+        </a> - 图片生成ai, 适合生成一些简单的图片.
+      </li>
+      <li>
+        <a href="https://www.flux.ai/" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:underline">
+        Flux
+        </a> - ai+pcb电路板, 适合电路设计.
+      </li>
+      <li>
+        <a href="https://studio.painterize.com/" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:underline">
+        Painterize
+        </a> - 图片生成ai, 适合生成一些复杂的图片.
+      </li>
+      <li>
+        <a href="https://www.secretary.my/" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:underline">
+        Secretary
+        </a> - Ava的一个ai秘书,目前还没用,付费.
+      </li>
+      <li>
+        <a href="https://best-randoms.com/" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:underline">
+        Best Randoms
+        </a> - 随机地址生成,可以生成一些随机的地址, 适合用来测试.
+      </li>
+      <li>
+        <a href="https://podcast.adobe.com/enhance#" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:underline">
+        Adobe Podcast
+        </a> - 一个声音增强工具,变成专业的声音(录音效果).
+      </li>
+      <li>
+        <a href="https://jimeng.jianying.com/" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:underline">
+        即梦ai
+        </a> - 视频生成ai,用于生成简单的视频.
+      </li>
+      <li>
+        <a href="https://api.chatanywhere.tech/" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:underline">
+        ChatAnywhere
+        </a> - 可以接api,github页面可以申请免费的test api key.
+      </li>
+      <li>
+        <a href="https://aistudio.google.com/app/" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:underline">
+        Google AI Studio
+        </a> - 由谷歌提供的 AI 工具集合, 包括文本生成、翻译等功能.
+      </li>
+      <li>
+        <a href="https://sora.com/" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:underline">
+        Sora
+        </a> - Openai的视频生成ai,效果一般需要订阅.
+      </li>
+      <li>
+        <a href="https://prompt.always200.com/" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:underline">
+        AI优化提示词
+        </a> - 用ai来优化你的提示词,要apikey.
+      </li>
+      <li>
+        <a href="https://prompt.always200.com/" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:underline">
+        AI优化提示词
+        </a> - 用ai来优化你的提示词,要apikey.
+      </li>
+      <li>
+        <a href="https://n8n-community.typeform.com/to/BvmzxqYv#nodename=n8n-nodes-base.webhook" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:underline">
+        n8n node ai提示
+        </a> - 配合n8n使用.
+      </li>
+      <li>
+        <a href="https://useaitowrite.substack.com/" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:underline">
+        AI to Write
+        </a> - 一个提示词的博客,里面有很多提示词的例子和使用方法.
+      </li>
+    </ul>
+    </section>
+
+    <!-- 图片与设计 -->
+    <section id="design-tools" class="mb-8">
+      <h2 class="text-xl font-semibold mb-2">设计工具</h2>
+      <ul class="list-disc list-inside space-y-1 text-gray-700">
+        <li>
+            <a href="https://www.pexels.com/" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:underline">
+            Pexels
+            </a> - 免费高质量图片和视频素材
+        </li>
+        <li>
+            <a href="https://pixabay.com/zh/" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:underline">
+            Pixabay
+            </a> - 免费高质量图片和视频素材
+        </li>
+        <li>
+            <a href="https://www.iconfont.cn/" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:underline">
+            Iconfont
+            </a> - 阿里巴巴的图标库，提供丰富的矢量图标
+        </li>
+        <li>
+            <a href="https://onemillionemojis.com/" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:underline">
+            One Million Emojis
+            </a> - 免费的表情符号和图标资源
+        </li>
+        <li>
+            <a href="https://emojidb.org/" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:underline">
+            EmojiDB 
+            </a> - 免费的表情符号和图标资源
+        </li>
+        <li>
+            <a href="https://icons8.com/icons" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:underline">
+            Icons8
+            </a> - 免费高质量图标和插图资源
+        </li>
+        <li>
+            <a href="https://mixkit.co/" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:underline">
+            Mixkit
+            </a> - 免费高质量视频和音效素材
+        </li>
+        <li>
+            <a href="https://www.logo.wine/" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:underline">
+            Wine
+            </a> - 免费在线logo设计工具
+        </li>
+        <li>
+            <a href="https://echarts.apache.org/zh/index.html" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:underline">
+            ECharts
+            </a> - 免费开源的图表库，适合数据可视化
+        </li>
+        <li>
+            <a href="https://ezgif.com/video-to-gif" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:underline">
+            Ezgif
+            </a> - 免费的GIF制作和编辑工具
+        </li>
+        <li>
+            <a href="https://www.pngaaa.com/" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:underline">
+            PNGAAA
+            </a> - 免费的PNG图片资源和编辑.
+        </li>
+
+      </ul>
+    </section>
+
+    <!-- Wallpaper -->
+    <section id="wallpaper-tools" class="mb-8">
+        <h2 class="text-xl font-semibold mb-2">壁纸资源</h2>
+        <ul class="list-disc list-inside space-y-1 text-gray-700">
+            <li>
+                <a href="https://wallhaven.cc/" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:underline">
+                Wallhaven
+                </a> - 高清壁纸资源网站
+            </li>
+            <li>
+                <a href="https://wall.alphacoders.com/?lang=Chinese" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:underline">
+                Alpha Coders
+                </a> - 高清壁纸资源网站
+            </li>
+        </ul>
+    </section>
+
+    <footer class="text-sm text-gray-400 mt-12">Last update：Thu Apr 17 16:02:07 CST 2025</footer>
+  </main>
+</Layout>
