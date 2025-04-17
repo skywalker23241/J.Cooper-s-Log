@@ -154,3 +154,29 @@ hr {
 	/* added line to stop words getting smushed together (as they go onto separate lines and some screen readers do not understand line feeds as a space */
 	white-space: nowrap;
 }
+.toc-box {
+    background-color: #f9fafb;
+    border: 1px solid #e5e7eb;
+    border-radius: 0.5rem;
+    padding: 1rem;
+    margin-bottom: 2rem;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+  }
+
+  .toc-box ul {
+    list-style: none;
+    padding: 0;
+  }
+
+  .toc-box a {
+    display: block;
+    padding: 6px 8px;
+    text-decoration: none;
+    color: #2563eb;
+    border-radius: 0.25rem;
+    transition: background 0.2s ease;
+  }
+
+  .toc-box a:hover {
+    background-color: #eff6ff;
+  }
