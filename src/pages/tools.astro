@@ -13,16 +13,34 @@ import Layout from '../layouts/BlogPost.astro'; // 如果你布局文件路径�
       这里记录了我日常工作和学习中常用的优质工具，涵盖 SEO、写作、效率、图片等领域。内容会不断更新，欢迎(Ctrl+D)收藏！
     </p>
 
-    <!-- 📌 目录导航 -->
-    <nav class="mb-10 border-l-4 border-blue-200 pl-4">
-        <p class="font-semibold mb-2">快速导航</p>
-        <ul class="space-y-1 text-blue-600 text-sm">
-          <li><a href="#seo-tools" class="hover:underline">SEO 工具</a></li>
-          <li><a href="#ai-tools" class="hover:underline">AI 工具</a></li>
-          <li><a href="#design-tools" class="hover:underline">设计工具</a></li>
-          <li><a href="#wallpaper-tools" class="hover:underline">壁纸工具</a></li>
-        </ul>
-    </nav>
+    <!-- 📌 优化版目录导航 -->
+<nav class="bg-gray-50 border border-gray-200 rounded-lg p-4 mb-10 shadow-sm">
+    <p class="font-semibold text-gray-800 mb-3 flex items-center">
+      快速导航
+    </p>
+    <ul class="space-y-2 text-sm text-blue-700">
+      <li>
+        <a href="#seo-tools" class="block hover:bg-blue-50 px-2 py-1 rounded transition-all duration-150">
+          SEO 工具
+        </a>
+      </li>
+      <li>
+        <a href="#ai-tools" class="block hover:bg-blue-50 px-2 py-1 rounded transition-all duration-150">
+          AI 工具
+        </a>
+      </li>
+      <li>
+        <a href="#design-tools" class="block hover:bg-blue-50 px-2 py-1 rounded transition-all duration-150">
+         设计工具
+        </a>
+      </li>
+      <li>
+        <a href="#wallpaper-tools" class="block hover:bg-blue-50 px-2 py-1 rounded transition-all duration-150">
+         壁纸工具
+        </a>
+      </li>
+    </ul>
+  </nav>
 
     <!-- SEO 工具 -->
     <section id="seo-tools" class="mb-8">
