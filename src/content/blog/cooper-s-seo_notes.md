@@ -2,7 +2,7 @@
 title: 'Cooper的SEO总结'
 description: '我的seo总结,之前很早开始总结的了,有一些有用的东西吧.'
 pubDate: 'Apr 16 2025'
-heroImage: '/cooper-s-seo-summary.jpg'
+heroImage: 'hero-b'
 ---
 
 2024年8月20日 13点47分

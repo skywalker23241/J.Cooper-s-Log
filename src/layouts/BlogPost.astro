@@ -6,11 +6,27 @@ import Footer from '../components/Footer.astro';
 import FormattedDate from '../components/FormattedDate.astro';
 import Comment from '../components/Comment.astro';
 import BackToTop from '../components/Backtotop.astro';
+import { Image } from 'astro:assets';
+import heroA from '../assets/cooper-s-coding-notes.jpg';
+import heroB from '../assets/cooper-s-seo-summary.jpg';
+import heroC from '../assets/post-1-head-pic.webp';
+import heroD from '../assets/about-cooper-1.jpg';
+import heroE from '../assets/tools.gif';
 
 
 type Props = CollectionEntry<'blog'>['data'];
 
 const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
+const heroImageMap = {
+  'hero-a': heroA,
+  'hero-b': heroB,
+  'hero-c': heroC,
+  'hero-d': heroD,
+  'hero-e': heroE,
+};
+
+// 确保当前的 hero 图片与 frontmatter 中的 heroImage 对应
+const currentHero = heroImage?.toLowerCase(); // 动态获取 heroImage 并小写化
 ---
 
 <html lang="en">
@@ -81,7 +97,13 @@ const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
 		<main>
 			<article>
 				<div class="hero-image">
-					{heroImage && <img width={1020} height={510} src={heroImage} alt="" />}
+					<Image
+					src={heroImageMap[currentHero as keyof typeof heroImageMap]}
+					alt="title"
+					width={1020}
+					height={510}
+					loading="eager"
+				  />				  
 				</div>
 				<div class="prose">
 					<div class="title">

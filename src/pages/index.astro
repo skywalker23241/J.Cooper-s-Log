@@ -3,6 +3,8 @@ import BaseHead from '../components/BaseHead.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
+import { Image } from 'astro:assets';
+import indexImage from '../assets/index.jpg'; // 注意路径
 ---
 
 <!doctype html>
@@ -29,7 +31,14 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 				<p style="font-size: 1rem; padding: 0 10px; margin-bottom: 30px;">
 				  Welcome to my personal log. I'm a website rookie developer, I will share some of my thoughts and experiences, also some of my <a href="https://github.com/skywalker23241/Optimize_post_ai" target="_blank">pojects</a> and other interesting things. Hope you like!
 				</p>
-				<img src="index.jpg" alt="Ready player one" style="max-width: 100%; height: auto; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);" />
+				<Image
+				src={indexImage}
+				alt="Ready player one"
+				widths={[400, 800, 1200]}
+				sizes="(max-width: 768px) 100vw, 800px"
+				style="border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);"
+				loading="eager"
+				/>
 			  </div>
 			  
 		</main>

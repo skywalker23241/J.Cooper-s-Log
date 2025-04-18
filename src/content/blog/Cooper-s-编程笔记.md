@@ -2,7 +2,7 @@
 title: 'Cooper的编程笔记'
 description: '写代码记的一些笔记,放这吧.'
 pubDate: 'Apr 18 2025'
-heroImage: '/cooper-s-coding-notes.jpg'
+heroImage: 'hero-a'
 ---
 # Project_code-notes
 
@@ -73,7 +73,6 @@ Html：
   </div>
 ```
 
-span
 
 ```css
 html:not([data-lt-script-installed]):not(.__lt-dummy-1):not(.__lt-dummy-2):not(.__lt-dummy-3):not(.__lt-dummy-4):not(.__lt-dummy-5):not(.__lt-dummy-6):not(.__lt-dummy-wxyz1234) lt-message .lt-message-container__progressbar {
