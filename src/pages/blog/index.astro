@@ -9,6 +9,7 @@ import { Image } from 'astro:assets';
 import heroA from '../../assets/cooper-s-coding-notes.jpg';
 import heroB from '../../assets/cooper-s-seo-summary.jpg';
 import heroC from '../../assets/post-1-head-pic.webp';
+import heroF from '../../assets/how-to-use-vpn-correctly.jpg';
 
 
 const posts = (await getCollection('blog')).sort(
@@ -20,6 +21,7 @@ const heroMap = {
   'hero-a': heroA,
   'hero-b': heroB,
   'hero-c': heroC,
+  'hero-f': heroF,
 };
 
 // 确保当前的 hero 图片与 frontmatter 中的 heroImage 对应
