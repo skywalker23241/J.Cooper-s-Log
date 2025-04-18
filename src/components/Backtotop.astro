@@ -2,43 +2,44 @@
 // 没有前置脚本逻辑
 ---
 
-<button id="backToTop" class="back-to-top" title="Back to top">🔝</button>
+<button id="backToTop" class="back-to-top" title="Back to top">⬆️</button>
 
 
 <style>
-    .back-to-top {
-      position: fixed;
-      bottom: 32px;
-      right: 32px;
-      z-index: 999;
-      width: 48px;
-      height: 48px;
-      border-radius: 999px;
-      background: rgba(35, 55, 255, 0.7); /* 半透明蓝色 */
-      color: #fff;
-      font-size: 24px;
-      border: none;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      opacity: 0;
-      pointer-events: none;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-      transition: opacity 0.4s ease, transform 0.3s ease;
-      backdrop-filter: blur(4px);
-    }
-  
-    .back-to-top.show {
-      opacity: 1;
-      pointer-events: auto;
-      transform: translateY(0);
-    }
-  
-    .back-to-top:hover {
-      background: rgba(35, 55, 255, 0.9);
-      transform: translateY(-4px);
-    }
+      .back-to-top {
+        position: fixed;
+        bottom: 32px;
+        right: 32px;
+        z-index: 999;
+        width: 48px;
+        height: 48px;
+        border-radius: 999px;
+        background: transparent; /* 移除背景 */
+        color: #000000;
+        font-size: 24px;
+        border: none;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        opacity: 0;
+        pointer-events: none;
+        box-shadow: none; /* 如果你也想去除阴影，可以保留这一行 */
+        transition: opacity 0.4s ease, transform 0.3s ease;
+        backdrop-filter: none; /* 移除模糊背景 */
+      }
+
+      .back-to-top.show {
+        opacity: 1;
+        pointer-events: auto;
+        transform: translateY(0);
+      }
+
+      .back-to-top:hover {
+        background: transparent; /* hover 也透明 */
+        color: #000000;
+        transform: translateY(-4px);
+      }
   </style>
   
 
