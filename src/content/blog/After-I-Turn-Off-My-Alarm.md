@@ -32,7 +32,7 @@ heroImage: 'hero-c'
 
 大概到了初中还是高中, 偷偷拿了老妈之前的一个小三星手机当闹钟. 好像还可以完水果忍者, 现在也不知去哪了, 可能被拿去换脸盆了......
 
-![Personal Handy-phone System](src/assets/Personal-Handy-phone-System.jpg)
+![Personal Handy-phone System](../../assets/Personal-Handy-phone-System.jpg)
 
 再到后面高考那会吧, 由于公平的高考马上到来, 自己去精品店买了一个蛮精致的闹钟,也是为了督促自己学习,现在想起来那段时间自己还是蛮努力的(假努力), 最后的结果和预期也出入不大. 总之闹钟在我大学之前还是使用的频率蛮高的.
 
