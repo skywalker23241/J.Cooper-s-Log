@@ -1,5 +1,5 @@
 ---
-title: '如何正确科学上网(翻墙)'
+title: '如何正确科学上网'
 description: '很早之前就想写的一篇教程,现在有机会写了......'
 pubDate: 'Apr 18 2025'
 heroImage: 'hero-f'
@@ -72,10 +72,9 @@ SOCKS5代理：可以转发所有网络请求（浏览器、聊天工具、FTP�
 
 这就是我这几年科学上网的两大主要工具, 其他的如果有需要可以看看这个[博客](https://clashx.pro/)来获取你需要的"工具".
 
-'*Panem et circenses*' 
+'*Panem et circenses*'
 
--出自罗马诗人 Juvenal 的《讽刺诗》中的一段, 
-
+-出自罗马诗人 Juvenal 的《讽刺诗》中的一段,
 
 英文是:
 

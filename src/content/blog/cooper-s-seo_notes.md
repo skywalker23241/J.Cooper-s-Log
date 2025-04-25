@@ -1,9 +1,10 @@
 ---
-title: 'Cooper的SEO总结'
+title: 'Cooper's SEO总结'
 description: '我的seo总结,之前很早开始总结的了,有一些有用的东西吧.'
 pubDate: 'Apr 16 2025'
 heroImage: 'hero-b'
 ---
+> *这里记录着我对seo的理解和总结*
 
 2024年8月20日 13点47分
 

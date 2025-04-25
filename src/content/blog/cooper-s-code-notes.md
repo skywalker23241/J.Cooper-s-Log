@@ -4,7 +4,7 @@ description: '写代码记的一些笔记,放这吧.'
 pubDate: 'Apr 18 2025'
 heroImage: 'hero-a'
 ---
-# Project_code-notes
+Project_code-notes
 
 ***2025.03.24 这是我的第一条笔记，github存储，come on!***
 
@@ -72,7 +72,6 @@ Html：
     <span id="progress-bar" style="transform: translateX(-100%);" class="absolute top-0 h-0.5 w-full bg-primary-blue shadow-md shadow-primary-blue/30 transition-transform duration-150"></span>
   </div>
 ```
-
 
 ```css
 html:not([data-lt-script-installed]):not(.__lt-dummy-1):not(.__lt-dummy-2):not(.__lt-dummy-3):not(.__lt-dummy-4):not(.__lt-dummy-5):not(.__lt-dummy-6):not(.__lt-dummy-wxyz1234) lt-message .lt-message-container__progressbar {
@@ -747,4 +746,5 @@ Wall Garden 更像是一座围墙, 由平台创造并且试图"垄断".
 ---
 
 编辑于
+
 ###### Thu Apr 17 23:30:21 CST 2025

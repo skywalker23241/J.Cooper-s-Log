@@ -1,11 +1,10 @@
 ---
-title: '记一次9008线刷OnePlus8T'
+title: '记9008线刷OP8T'
 description: '刷机有风险, 记住做好完全的准备再进行, 否则像我一样马后炮......'
 pubDate: 'Apr 20 2025'
 heroImage: 'hero-g'
 ---
-
-# 记一次9008线刷OnePlus8T发生的趣事(无聊的事情)
+记一次9008线刷OnePlus8T发生的趣事(无聊的事情)
 
 ## 影子
 

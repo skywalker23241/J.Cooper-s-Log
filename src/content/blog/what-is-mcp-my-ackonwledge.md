@@ -4,8 +4,7 @@ description: '感觉离AGI又近了一步,hhhhhh'
 pubDate: 'Apr 24 2025'
 heroImage: 'hero-h'
 ---
-
-# 记录一下自己根据这篇[博客](https://www.datacamp.com/tutorial/mcp-model-context-protocol?utm_source=chatgpt.com)试用MCP的心得吧
+记录一下自己根据这篇[博客](https://www.datacamp.com/tutorial/mcp-model-context-protocol?utm_source=chatgpt.com)试用MCP的心得吧
 
 首先是不太懂MCP, 先是从Den的几篇[博客](https://den.dev/blog/local-mcp-server-authorization/)了解到这个概念, 后来深入了解才发现原来2024年Anthropic就发布了, 只是没有引起关注罢了......
 
