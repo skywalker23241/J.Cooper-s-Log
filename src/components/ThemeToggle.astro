@@ -16,33 +16,70 @@
 </button>
 
 <script>
-	// 检查本地存储中的主题设置
-	const theme = localStorage.getItem('theme') || 
-		(window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
-	
-	// 设置初始主题
-	document.documentElement.setAttribute('data-theme', theme);
-	
-	// 主题切换按钮点击事件
-	const themeToggle = document.getElementById('theme-toggle');
-	if (themeToggle) {
-		themeToggle.addEventListener('click', () => {
-			const currentTheme = document.documentElement.getAttribute('data-theme');
-			const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-			
-			// 更新主题
-			document.documentElement.setAttribute('data-theme', newTheme);
-			localStorage.setItem('theme', newTheme);
-			
-			// 强制触发重绘
-			document.body.style.display = 'none';
-			document.body.offsetHeight; // 触发重排
-			document.body.style.display = '';
+	// 主题初始化函数
+	function initializeTheme() {
+		const savedTheme = localStorage.getItem('theme');
+		const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+		const theme = savedTheme || (prefersDark ? 'dark' : 'light');
+
+		document.documentElement.setAttribute('data-theme', theme);
+		return theme;
+	}
+
+	// 主题切换函数
+	function toggleTheme() {
+		const currentTheme = document.documentElement.getAttribute('data-theme');
+		const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+
+		// 添加过渡类
+		document.documentElement.classList.add('theme-transition');
+
+		// 更新主题
+		document.documentElement.setAttribute('data-theme', newTheme);
+		localStorage.setItem('theme', newTheme);
+
+		// 移除过渡类
+		setTimeout(() => {
+			document.documentElement.classList.remove('theme-transition');
+		}, 300);
+	}
+
+	// 监听系统主题变化
+	function watchSystemTheme() {
+		const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+		mediaQuery.addEventListener('change', (e) => {
+			if (!localStorage.getItem('theme')) {
+				const theme = e.matches ? 'dark' : 'light';
+				document.documentElement.setAttribute('data-theme', theme);
+			}
 		});
 	}
+
+	// 初始化
+	document.addEventListener('DOMContentLoaded', () => {
+		initializeTheme();
+		watchSystemTheme();
+
+		const themeToggle = document.getElementById('theme-toggle');
+		if (themeToggle) {
+			themeToggle.addEventListener('click', toggleTheme);
+		}
+	});
+
+	// 立即执行主题初始化（避免闪烁）
+	initializeTheme();
 </script>
 
 <style>
+	/* Theme transition for smooth switching */
+	.theme-transition,
+	.theme-transition *,
+	.theme-transition *:before,
+	.theme-transition *:after {
+		transition: all 0.3s ease !important;
+		transition-delay: 0 !important;
+	}
+
 	.theme-toggle {
 		background: none;
 		border: none;
@@ -60,7 +97,14 @@
 	}
 
 	.theme-toggle:hover {
-		background-color: rgba(var(--gray), 0.1);
+		background-color: var(--toc-hover);
+		color: var(--icon-hover-color);
+		transform: scale(1.1);
+	}
+
+	.theme-toggle:focus {
+		outline: 2px solid var(--accent);
+		outline-offset: 2px;
 	}
 
 	.sun-icon,
@@ -78,15 +122,24 @@
 	.moon-icon {
 		opacity: 0;
 		visibility: hidden;
+		transform: translate(-50%, -50%) rotate(180deg) scale(0.8);
+	}
+
+	.sun-icon {
+		opacity: 1;
+		visibility: visible;
+		transform: translate(-50%, -50%) rotate(0deg) scale(1);
 	}
 
 	[data-theme="dark"] .sun-icon {
 		opacity: 0;
 		visibility: hidden;
+		transform: translate(-50%, -50%) rotate(-180deg) scale(0.8);
 	}
 
 	[data-theme="dark"] .moon-icon {
 		opacity: 1;
 		visibility: visible;
+		transform: translate(-50%, -50%) rotate(0deg) scale(1);
 	}
-</style> 
+</style>

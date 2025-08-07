@@ -1,68 +1,156 @@
 ---
-// 没有前置脚本逻辑
+// Back to Top Component
 ---
 
-<button id="backToTop" class="back-to-top" title="Back to top">⬆️</button>
-
+<button id="backToTop" class="back-to-top" title="Back to top" aria-label="Scroll to top">
+	<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+		<path d="m18 15-6-6-6 6"/>
+	</svg>
+</button>
 
 <style>
-      .back-to-top {
-        position: fixed;
-        bottom: 32px;
-        right: 32px;
-        z-index: 999;
-        width: 48px;
-        height: 48px;
-        border-radius: 999px;
-        background: transparent; /* 移除背景 */
-        color: #000000;
-        font-size: 24px;
-        border: none;
-        cursor: pointer;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        opacity: 0;
-        pointer-events: none;
-        box-shadow: none; /* 如果你也想去除阴影，可以保留这一行 */
-        transition: opacity 0.4s ease, transform 0.3s ease;
-        backdrop-filter: none; /* 移除模糊背景 */
-      }
+	.back-to-top {
+		position: fixed;
+		bottom: 2rem;
+		right: 2rem;
+		z-index: 1000;
+		width: 3rem;
+		height: 3rem;
+		border-radius: 50%;
+		background: var(--button-bg);
+		color: var(--button-text);
+		border: none;
+		cursor: pointer;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		opacity: 0;
+		visibility: hidden;
+		transform: translateY(1rem);
+		transition: all 0.3s ease;
+		box-shadow: var(--shadow-lg);
+		backdrop-filter: blur(10px);
+	}
 
-      .back-to-top.show {
-        opacity: 1;
-        pointer-events: auto;
-        transform: translateY(0);
-      }
+	.back-to-top.show {
+		opacity: 1;
+		visibility: visible;
+		transform: translateY(0);
+	}
 
-      .back-to-top:hover {
-        background: transparent; /* hover 也透明 */
-        color: #000000;
-        transform: translateY(-4px);
-      }
-  </style>
+	.back-to-top:hover {
+		background: var(--button-hover-bg);
+		transform: translateY(-0.25rem);
+		box-shadow: var(--shadow-lg);
+	}
+
+	.back-to-top:focus {
+		outline: 2px solid var(--accent);
+		outline-offset: 2px;
+	}
+
+	.back-to-top svg {
+		width: 1.25rem;
+		height: 1.25rem;
+		transition: transform 0.2s ease;
+	}
+
+	.back-to-top:hover svg {
+		transform: translateY(-1px);
+	}
+
+	/* Dark theme adjustments */
+	[data-theme="dark"] .back-to-top {
+		background: var(--button-bg);
+		color: var(--button-text);
+	}
+
+	[data-theme="dark"] .back-to-top:hover {
+		background: var(--button-hover-bg);
+	}
+
+	/* Mobile responsive */
+	@media (max-width: 768px) {
+		.back-to-top {
+			bottom: 1.5rem;
+			right: 1.5rem;
+			width: 2.75rem;
+			height: 2.75rem;
+		}
+
+		.back-to-top svg {
+			width: 1.125rem;
+			height: 1.125rem;
+		}
+	}
+
+	@media (max-width: 480px) {
+		.back-to-top {
+			bottom: 1rem;
+			right: 1rem;
+			width: 2.5rem;
+			height: 2.5rem;
+		}
+
+		.back-to-top svg {
+			width: 1rem;
+			height: 1rem;
+		}
+	}
+</style>
   
 
-<script type="module">
-  const backToTopButton = document.getElementById('backToTop');
+<script>
+	// Back to Top functionality
+	document.addEventListener('DOMContentLoaded', () => {
+		const backToTopButton = document.getElementById('backToTop');
 
-  window.onscroll = function () {
-    if (
-      document.body.scrollTop > 100 ||
-      document.documentElement.scrollTop > 100
-    ) {
-      backToTopButton.classList.add('show');
-    } else {
-      backToTopButton.classList.remove('show');
-    }
-  };
+		if (!backToTopButton) return;
 
-  backToTopButton.addEventListener('click', function () {
-    window.scrollTo({
-      top: 0,
-      behavior: 'smooth'
-    });
-  });
+		// Throttle scroll events for better performance
+		let ticking = false;
+
+		function updateBackToTopVisibility() {
+			const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+
+			if (scrollTop > 300) {
+				backToTopButton.classList.add('show');
+			} else {
+				backToTopButton.classList.remove('show');
+			}
+
+			ticking = false;
+		}
+
+		function requestTick() {
+			if (!ticking) {
+				requestAnimationFrame(updateBackToTopVisibility);
+				ticking = true;
+			}
+		}
+
+		// Listen for scroll events
+		window.addEventListener('scroll', requestTick, { passive: true });
+
+		// Handle click events
+		backToTopButton.addEventListener('click', () => {
+			window.scrollTo({
+				top: 0,
+				behavior: 'smooth'
+			});
+		});
+
+		// Handle keyboard events for accessibility
+		backToTopButton.addEventListener('keydown', (e) => {
+			if (e.key === 'Enter' || e.key === ' ') {
+				e.preventDefault();
+				window.scrollTo({
+					top: 0,
+					behavior: 'smooth'
+				});
+			}
+		});
+	});
 </script>
 
   

@@ -20,27 +20,145 @@ import indexImage from '../assets/index.jpg'; // 注意路径
 		gtag('config', 'G-DKECP77S2Y');
 		</script>
 		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+		<style>
+			/* Override global main styles for homepage */
+			main {
+				width: 100%;
+				max-width: 100%;
+				margin: 0 auto;
+				padding: 0;
+			}
+
+			.hero-section {
+				max-width: 600px;
+				margin: 3rem auto;
+				padding: 2rem 1rem;
+				text-align: center;
+				line-height: var(--line-height-relaxed);
+			}
+
+			.hero-title {
+				font-size: var(--font-size-5xl);
+				margin-bottom: 1rem;
+				color: var(--text-color);
+				font-weight: var(--font-weight-bold);
+			}
+
+			.hero-subtitle {
+				font-size: var(--font-size-3xl);
+				font-weight: var(--font-weight-normal);
+				margin-bottom: 0.5rem;
+				color: var(--text-color);
+			}
+
+			.hero-name {
+				font-size: var(--font-size-lg);
+				color: var(--text-color-secondary);
+				font-weight: var(--font-weight-normal);
+				margin-bottom: 2rem;
+			}
+
+			.hero-description {
+				font-size: var(--font-size-lg);
+				padding: 0 1rem;
+				margin-bottom: 3rem;
+				color: var(--text-color);
+				line-height: var(--line-height-relaxed);
+			}
+
+			.hero-description a {
+				color: var(--link-color);
+				text-decoration: none;
+				font-weight: var(--font-weight-bold);
+				transition: color 0.2s ease;
+			}
+
+			.hero-description a:hover {
+				color: var(--link-hover-color);
+				text-decoration: underline;
+			}
+
+			.hero-image {
+				margin-top: 2rem;
+			}
+
+			.hero-image img {
+				border-radius: 0.75rem;
+				box-shadow: var(--shadow-lg);
+				transition: transform 0.3s ease, box-shadow 0.3s ease;
+			}
+
+			.hero-image img:hover {
+				transform: translateY(-4px);
+				box-shadow: var(--shadow-lg);
+			}
+
+			/* Mobile responsive */
+			@media (max-width: 768px) {
+				.hero-section {
+					margin: 2rem auto;
+					padding: 1.5rem 1rem;
+				}
+
+				.hero-title {
+					font-size: var(--font-size-4xl);
+				}
+
+				.hero-subtitle {
+					font-size: var(--font-size-2xl);
+				}
+
+				.hero-description {
+					font-size: var(--font-size-base);
+					padding: 0 0.5rem;
+					margin-bottom: 2rem;
+				}
+			}
+
+			@media (max-width: 480px) {
+				.hero-section {
+					margin: 1.5rem auto;
+					padding: 1rem 0.75rem;
+				}
+
+				.hero-title {
+					font-size: var(--font-size-3xl);
+				}
+
+				.hero-subtitle {
+					font-size: var(--font-size-xl);
+				}
+
+				.hero-name {
+					font-size: var(--font-size-base);
+				}
+
+				.hero-description {
+					font-size: var(--font-size-sm);
+				}
+			}
+		</style>
 	</head>
 	<body>
 		<Header />
 		<main>
-			<div style="max-width: 600px; margin: 50px auto; color: #333; text-align: center; line-height: 1.6;">
-				<h1 style="font-size: 2.5rem; margin-bottom: 10px;">Howdy! :)</h1>
-				<h3 style="font-size: 1.5rem; font-weight: normal; margin-bottom: 5px;">I'm Jack.Cooper</h3>
-				<h4 style="font-size: 1rem; color: #666; font-weight: normal; margin-bottom: 20px;">🇨🇳(Junbo Le/乐俊波)</h4>
-				<p style="font-size: 1rem; padding: 0 10px; margin-bottom: 30px;">
-				  Welcome to my personal log. I'm a website rookie developer, I will share some of my thoughts and experiences, also some of my <a href="https://github.com/skywalker23241/Optimize_post_ai" target="_blank">pojects</a> and other interesting things. Hope you like!
+			<div class="hero-section">
+				<h1 class="hero-title">Howdy! :)</h1>
+				<h3 class="hero-subtitle">I'm Jack.Cooper</h3>
+				<h4 class="hero-name">🇨🇳(Junbo Le/乐俊波)</h4>
+				<p class="hero-description">
+				  Welcome to my personal log. I'm a website rookie developer, I will share some of my thoughts and experiences, also some of my <a href="https://github.com/skywalker23241/Optimize_post_ai" target="_blank">projects</a> and other interesting things. Hope you like!
 				</p>
-				<Image
-				src={indexImage}
-				alt="Ready player one"
-				widths={[400, 800, 1200]}
-				sizes="(max-width: 768px) 100vw, 800px"
-				style="border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);"
-				loading="eager"
-				/>
-			  </div>
-			  
+				<div class="hero-image">
+					<Image
+					src={indexImage}
+					alt="Ready player one"
+					widths={[400, 800, 1200]}
+					sizes="(max-width: 768px) 100vw, 800px"
+					loading="eager"
+					/>
+				</div>
+			</div>
 		</main>
 		<Footer />
 	</body>

@@ -40,43 +40,138 @@ const currentHero = heroImage?.toLowerCase(); // 动态获取 heroImage 并小�
 		<BaseHead title={title} description={description} />
 		<style>
 			main {
-				width: calc(100% - 2em);
+				width: 100%;
 				max-width: 100%;
 				margin: 0;
+				padding: 0;
 			}
+
+			article {
+				max-width: 1200px;
+				margin: 0 auto;
+			}
+
 			.hero-image {
 				width: 100%;
+				margin-bottom: 2rem;
+				position: relative;
+				overflow: hidden;
 			}
+
 			.hero-image img {
 				display: block;
-				margin: 0 auto;
-				border-radius: 12px;
-				box-shadow: var(--box-shadow);
+				width: 100%;
+				height: auto;
+				max-height: 60vh;
+				object-fit: cover;
+				border-radius: 0;
 			}
+
 			.prose {
-				width: 720px;
-				max-width: calc(100% - 2em);
-				margin: auto;
-				padding: 1em;
+				max-width: 720px;
+				margin: 0 auto;
+				padding: 2rem 1.5rem;
 				color: var(--text-color);
 			}
+
 			.title {
-				margin-bottom: 1em;
-				padding: 1em 0;
+				margin-bottom: 2rem;
+				padding: 2rem 0 1rem;
 				text-align: center;
-				line-height: 1;
+				border-bottom: 1px solid var(--border-color-light);
 			}
+
 			.title h1 {
-				margin: 0 0 0.5em 0;
+				margin: 0 0 1rem 0;
 				color: var(--text-color);
+				font-size: var(--font-size-4xl);
+				line-height: var(--line-height-tight);
+				font-weight: var(--font-weight-bold);
 			}
+
 			.date {
-				margin-bottom: 0.5em;
+				margin-bottom: 0.5rem;
 				color: var(--text-color-secondary);
+				font-size: var(--font-size-sm);
+				font-weight: var(--font-weight-normal);
 			}
+
 			.last-updated-on {
 				font-style: italic;
-				color: var(--text-color-secondary);
+				color: var(--text-color-muted);
+				font-size: var(--font-size-sm);
+				margin-top: 0.5rem;
+			}
+
+			/* Article content styling */
+			.prose h2 {
+				margin-top: 3rem;
+				margin-bottom: 1rem;
+				padding-bottom: 0.5rem;
+				border-bottom: 2px solid var(--border-color-light);
+			}
+
+			.prose h3 {
+				margin-top: 2rem;
+				margin-bottom: 1rem;
+			}
+
+			.prose p {
+				margin-bottom: 1.5rem;
+				line-height: var(--line-height-relaxed);
+			}
+
+			.prose img {
+				margin: 2rem 0;
+				border-radius: 0.5rem;
+				box-shadow: var(--shadow-md);
+			}
+
+			.prose pre {
+				margin: 2rem 0;
+				border-radius: 0.5rem;
+				overflow-x: auto;
+			}
+
+			.prose blockquote {
+				margin: 2rem 0;
+				padding: 1.5rem;
+				border-left: 4px solid var(--accent);
+				background: var(--bg-secondary);
+				border-radius: 0 0.5rem 0.5rem 0;
+			}
+
+			/* Mobile responsive */
+			@media (max-width: 768px) {
+				.prose {
+					padding: 1.5rem 1rem;
+				}
+
+				.title {
+					padding: 1.5rem 0 1rem;
+				}
+
+				.title h1 {
+					font-size: var(--font-size-3xl);
+				}
+
+				.hero-image img {
+					max-height: 40vh;
+				}
+			}
+
+			@media (max-width: 480px) {
+				.prose {
+					padding: 1rem 0.75rem;
+				}
+
+				.title h1 {
+					font-size: var(--font-size-2xl);
+				}
+
+				.hero-image img {
+					max-height: 30vh;
+				}
 			}
 		</style>
 
