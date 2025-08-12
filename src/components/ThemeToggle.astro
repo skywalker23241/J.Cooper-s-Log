@@ -15,52 +15,212 @@
 	</svg>
 </button>
 
-<script>
-	// 检查本地存储中的主题设置
-	const theme = localStorage.getItem('theme') || 
-		(window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
-	
-	// 设置初始主题
-	document.documentElement.setAttribute('data-theme', theme);
+<script is:inline>
+	// 防止脚本重复执行
+	if (window.themeInitialized) {
+		// 如果已经初始化过，只更新图标状态
+		const currentTheme = document.documentElement.getAttribute('data-theme');
+		const sunIcon = document.querySelector('.sun-icon');
+		const moonIcon = document.querySelector('.moon-icon');
+		if (sunIcon && moonIcon) {
+			if (currentTheme === 'dark') {
+				sunIcon.style.opacity = '0';
+				sunIcon.style.visibility = 'hidden';
+				moonIcon.style.opacity = '1';
+				moonIcon.style.visibility = 'visible';
+			} else {
+				sunIcon.style.opacity = '1';
+				sunIcon.style.visibility = 'visible';
+				moonIcon.style.opacity = '0';
+				moonIcon.style.visibility = 'hidden';
+			}
+		}
+	} else {
+		// 首次初始化
+		window.themeInitialized = true;
+
+		const theme = localStorage.getItem('theme') ||
+			(window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+
+		// 设置初始主题
+		document.documentElement.setAttribute('data-theme', theme);
+	}
+
+	// 强制更新图标状态和链接颜色
+	function updateIconVisibility() {
+		const currentTheme = document.documentElement.getAttribute('data-theme');
+		const sunIcon = document.querySelector('.sun-icon');
+		const moonIcon = document.querySelector('.moon-icon');
+		const navLinks = document.querySelectorAll('.nav-links a, .mobile-nav-links a');
+
+		// 更新图标
+		if (sunIcon && moonIcon) {
+			if (currentTheme === 'dark') {
+				sunIcon.style.opacity = '0';
+				sunIcon.style.visibility = 'hidden';
+				sunIcon.style.transform = 'translate(-50%, -50%) rotate(180deg) scale(0.3)';
+				moonIcon.style.opacity = '1';
+				moonIcon.style.visibility = 'visible';
+				moonIcon.style.transform = 'translate(-50%, -50%) rotate(0deg) scale(1)';
+			} else {
+				sunIcon.style.opacity = '1';
+				sunIcon.style.visibility = 'visible';
+				sunIcon.style.transform = 'translate(-50%, -50%) rotate(0deg) scale(1)';
+				moonIcon.style.opacity = '0';
+				moonIcon.style.visibility = 'hidden';
+				moonIcon.style.transform = 'translate(-50%, -50%) rotate(-180deg) scale(0.3)';
+			}
+		}
+
+		// 强制更新导航链接颜色，防止闪白
+		navLinks.forEach(link => {
+			if (currentTheme === 'dark') {
+				link.style.color = 'rgb(229, 233, 240)'; // --gray-light
+			} else {
+				link.style.color = 'rgb(34, 41, 57)'; // --gray-dark
+			}
+		});
+	}
+
+	// 初始化时更新图标（延迟执行确保DOM完全加载）
+	setTimeout(updateIconVisibility, 100);
 	
 	// 主题切换按钮点击事件
 	const themeToggle = document.getElementById('theme-toggle');
 	if (themeToggle) {
-		themeToggle.addEventListener('click', () => {
+		themeToggle.addEventListener('click', (e) => {
 			const currentTheme = document.documentElement.getAttribute('data-theme');
 			const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-			
-			// 更新主题
+
+			// 防止重复点击
+			if (themeToggle.classList.contains('clicking')) return;
+
+			// 获取点击位置用于涟漪效果
+			const rect = themeToggle.getBoundingClientRect();
+			const x = ((e.clientX - rect.left) / rect.width) * 100;
+			const y = ((e.clientY - rect.top) / rect.height) * 100;
+
+			// 设置CSS变量用于涟漪动画
+			document.documentElement.style.setProperty('--click-x', `${x}%`);
+			document.documentElement.style.setProperty('--click-y', `${y}%`);
+
+			// 添加点击动画类
+			themeToggle.classList.add('clicking');
+
+			// 获取所有导航链接
+			const navLinks = document.querySelectorAll('.nav-links a, .mobile-nav-links a');
+
+			// 一次性原子更新，避免中间状态
+			const targetColor = newTheme === 'dark' ? 'rgb(229, 233, 240)' : 'rgb(34, 41, 57)';
+
+			// 同时更新主题和所有元素颜色
 			document.documentElement.setAttribute('data-theme', newTheme);
 			localStorage.setItem('theme', newTheme);
-			
-			// 强制触发重绘
-			document.body.style.display = 'none';
-			document.body.offsetHeight; // 触发重排
-			document.body.style.display = '';
+
+			// 立即设置所有导航链接的颜色
+			navLinks.forEach(link => {
+				link.style.setProperty('color', targetColor, 'important');
+			});
+
+			// 立即更新图标状态
+			updateIconVisibility();
+
+			// 添加过渡动画类用于后续的悬停等效果
+			document.documentElement.classList.add('theme-transitioning');
+
+			// 移除动画类
+			setTimeout(() => {
+				themeToggle.classList.remove('clicking');
+			}, 600);
+
+			setTimeout(() => {
+				document.documentElement.classList.remove('theme-transitioning');
+			}, 800);
+		});
+
+		// 添加键盘支持
+		themeToggle.addEventListener('keydown', (e) => {
+			if (e.key === 'Enter' || e.key === ' ') {
+				e.preventDefault();
+				themeToggle.click();
+			}
 		});
 	}
 </script>
 
 <style>
+	/* 全局主题过渡动画 */
+	:global(html.theme-transitioning),
+	:global(html.theme-transitioning *),
+	:global(html.theme-transitioning *:before),
+	:global(html.theme-transitioning *:after) {
+		transition: background-color 0.5s cubic-bezier(0.4, 0, 0.2, 1),
+					color 0.5s cubic-bezier(0.4, 0, 0.2, 1),
+					border-color 0.5s cubic-bezier(0.4, 0, 0.2, 1),
+					box-shadow 0.5s cubic-bezier(0.4, 0, 0.2, 1),
+					fill 0.5s cubic-bezier(0.4, 0, 0.2, 1),
+					stroke 0.5s cubic-bezier(0.4, 0, 0.2, 1) !important;
+		transition-delay: 0s !important;
+	}
+
+	/* 页面渐变遮罩效果 */
+	:global(html.theme-transitioning::before) {
+		content: '';
+		position: fixed;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		background: radial-gradient(circle at var(--click-x, 50%) var(--click-y, 50%),
+					transparent 0%,
+					rgba(0, 0, 0, 0.1) 50%,
+					transparent 100%);
+		pointer-events: none;
+		z-index: 9999;
+		opacity: 0;
+		animation: themeRipple 0.6s ease-out;
+	}
+
+	@keyframes themeRipple {
+		0% {
+			opacity: 0;
+			transform: scale(0);
+		}
+		50% {
+			opacity: 0.3;
+			transform: scale(1);
+		}
+		100% {
+			opacity: 0;
+			transform: scale(2);
+		}
+	}
+
 	.theme-toggle {
 		background: none;
 		border: none;
 		padding: 0.5rem;
 		cursor: pointer;
-		color: var(--icon-color);
+		color: var(--icon-color, var(--text-color, #333));
 		display: flex;
 		align-items: center;
 		justify-content: center;
 		border-radius: 50%;
-		transition: all 0.3s ease;
 		position: relative;
-		width: 40px;
-		height: 40px;
+		width: 44px;
+		height: 44px;
+		overflow: hidden;
+		transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+		transform-origin: center;
 	}
 
 	.theme-toggle:hover {
-		background-color: rgba(var(--gray), 0.1);
+		background-color: var(--bg-accent, rgba(0, 0, 0, 0.05));
+		transform: scale(1.05);
+	}
+
+	.theme-toggle:active {
+		transform: scale(0.95);
 	}
 
 	.sun-icon,
@@ -70,23 +230,136 @@
 		position: absolute;
 		top: 50%;
 		left: 50%;
-		transform: translate(-50%, -50%);
-		transition: all 0.3s ease;
+		transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
 		pointer-events: none;
+		transform-origin: center;
 	}
 
+	/* 太阳图标默认状态 */
+	.sun-icon {
+		opacity: 1;
+		visibility: visible;
+		transform: translate(-50%, -50%) rotate(0deg) scale(1);
+		filter: drop-shadow(0 0 8px rgba(255, 193, 7, 0.3));
+	}
+
+	/* 月亮图标默认状态 */
 	.moon-icon {
 		opacity: 0;
 		visibility: hidden;
+		transform: translate(-50%, -50%) rotate(-180deg) scale(0.3);
+		filter: drop-shadow(0 0 8px rgba(147, 197, 253, 0.3));
+	}
+
+	/* 暗色主题下的图标状态 */
+	:global([data-theme="dark"]) .theme-toggle .sun-icon {
+		opacity: 0 !important;
+		visibility: hidden !important;
+		transform: translate(-50%, -50%) rotate(180deg) scale(0.3) !important;
+	}
+
+	:global([data-theme="dark"]) .theme-toggle .moon-icon {
+		opacity: 1 !important;
+		visibility: visible !important;
+		transform: translate(-50%, -50%) rotate(0deg) scale(1) !important;
+	}
+
+	/* 点击时的动画效果 */
+	.theme-toggle.clicking {
+		animation: themeToggleClick 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+	}
+
+	@keyframes themeToggleClick {
+		0% {
+			transform: scale(1) rotate(0deg);
+			box-shadow: 0 0 0 0 rgba(var(--accent-rgb, 35, 55, 255), 0.4);
+		}
+		25% {
+			transform: scale(1.15) rotate(90deg);
+			box-shadow: 0 0 0 8px rgba(var(--accent-rgb, 35, 55, 255), 0.2);
+		}
+		50% {
+			transform: scale(1.1) rotate(180deg);
+			box-shadow: 0 0 0 12px rgba(var(--accent-rgb, 35, 55, 255), 0.1);
+		}
+		75% {
+			transform: scale(1.05) rotate(270deg);
+			box-shadow: 0 0 0 8px rgba(var(--accent-rgb, 35, 55, 255), 0.05);
+		}
+		100% {
+			transform: scale(1) rotate(360deg);
+			box-shadow: 0 0 0 0 rgba(var(--accent-rgb, 35, 55, 255), 0);
+		}
+	}
+
+	/* 图标旋转动画 */
+	.sun-icon {
+		animation: sunRotate 20s linear infinite;
+	}
+
+	@keyframes sunRotate {
+		from { transform: translate(-50%, -50%) rotate(0deg); }
+		to { transform: translate(-50%, -50%) rotate(360deg); }
 	}
 
 	[data-theme="dark"] .sun-icon {
-		opacity: 0;
-		visibility: hidden;
+		animation: none;
 	}
 
+	/* 月亮摇摆动画 */
 	[data-theme="dark"] .moon-icon {
-		opacity: 1;
-		visibility: visible;
+		animation: moonSway 4s ease-in-out infinite;
 	}
-</style> 
+
+	@keyframes moonSway {
+		0%, 100% { transform: translate(-50%, -50%) rotate(-5deg); }
+		50% { transform: translate(-50%, -50%) rotate(5deg); }
+	}
+
+	/* 悬停时的光晕效果 */
+	.theme-toggle::before {
+		content: '';
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		width: 0;
+		height: 0;
+		background: radial-gradient(circle, var(--accent, #2337ff) 0%, transparent 70%);
+		border-radius: 50%;
+		opacity: 0;
+		transform: translate(-50%, -50%);
+		transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+		z-index: -1;
+	}
+
+	.theme-toggle:hover::before {
+		width: 70px;
+		height: 70px;
+		opacity: 0.15;
+	}
+
+	/* 主题切换时的页面渐变效果 */
+	:global(body) {
+		transition: background-color 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+	}
+
+	/* 增强的图标动画 */
+	.theme-toggle:hover .sun-icon {
+		transform: translate(-50%, -50%) rotate(45deg) scale(1.1);
+		filter: drop-shadow(0 0 12px rgba(255, 193, 7, 0.5));
+	}
+
+	.theme-toggle:hover .moon-icon {
+		transform: translate(-50%, -50%) rotate(15deg) scale(1.1);
+		filter: drop-shadow(0 0 12px rgba(147, 197, 253, 0.5));
+	}
+
+	:global([data-theme="dark"]) .theme-toggle:hover .sun-icon {
+		transform: translate(-50%, -50%) rotate(225deg) scale(0.3) !important;
+	}
+
+	:global([data-theme="dark"]) .theme-toggle:hover .moon-icon {
+		transform: translate(-50%, -50%) rotate(15deg) scale(1.1) !important;
+		filter: drop-shadow(0 0 12px rgba(147, 197, 253, 0.6)) !important;
+	}
+</style>

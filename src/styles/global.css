@@ -5,6 +5,7 @@
  */
 
 :root {
+	color-scheme: light;
 	--accent: #2337ff;
 	--accent-dark: #000d8a;
 	--black: 15, 18, 25;
@@ -28,9 +29,11 @@
 	--toc-link: #2563eb;
 	--toc-hover: #eff6ff;
 	--icon-color: rgb(var(--gray-dark));
+	--bg-accent: rgba(var(--gray), 0.1);
 }
 
 [data-theme="dark"] {
+	color-scheme: dark;
 	--bg-color: rgb(var(--black));
 	--text-color: rgb(var(--gray-light));
 	--header-bg: rgb(var(--black));
@@ -44,6 +47,7 @@
 	--toc-link: var(--accent);
 	--toc-hover: rgba(var(--gray), 0.2);
 	--icon-color: rgb(var(--gray-light));
+	--bg-accent: rgba(var(--gray-light), 0.1);
 }
 
 @font-face {
@@ -111,6 +115,7 @@ b {
 }
 a {
 	color: var(--link-color);
+	transition: color 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 a:hover {
 	color: var(--accent);
