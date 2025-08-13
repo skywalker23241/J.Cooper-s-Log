@@ -1,0 +1,89 @@
+---
+import BaseHead from '../../components/BaseHead.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import FormattedDate from '../../components/FormattedDate.astro';
+import { SITE_TITLE, SITE_DESCRIPTION } from '../../consts';
+import { getCollection } from 'astro:content';
+import { Image } from 'astro:assets';
+import heroA from '../../assets/cooper-s-coding-notes.jpg';
+import heroB from '../../assets/cooper-s-seo-summary.jpg';
+import heroC from '../../assets/after-i-turn-off-alarm.webp';
+import heroD from '../../assets/about-cooper.jpg';
+import heroE from '../../assets/tools.gif';
+import heroF from '../../assets/how-to-use-vpn-correctly.jpg';
+import heroG from '../../assets/root-one-plus-8t-9008-oxgen-os.jpg';
+import heroH from '../../assets/what-is-mcp.png';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog');
+  const set = new Set<string>();
+  for (const post of posts) {
+    const c = post.data.category?.toLowerCase().trim();
+    if (c) set.add(c);
+  }
+  return Array.from(set).map((c) => ({ params: { category: c }, props: { category: c } }));
+}
+
+const { category } = Astro.props as { category: string };
+const posts = (await getCollection('blog'))
+  .filter((p) => p.data.category?.toLowerCase().trim() === category)
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+
+const heroMap = {
+  'hero-a': heroA,
+  'hero-b': heroB,
+  'hero-c': heroC,
+  'hero-d': heroD,
+  'hero-e': heroE,
+  'hero-f': heroF,
+  'hero-g': heroG,
+  'hero-h': heroH,
+} as const;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <BaseHead title={`${SITE_TITLE} | Category: ${category}`} description={SITE_DESCRIPTION} />
+    <style>
+      .list { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: 1fr; gap: 1rem; }
+      .item { border-radius: 12px; background: var(--bg-accent); overflow: hidden; transition: box-shadow .2s ease; }
+      .item a { display: block; color: var(--text-color); text-decoration: none; }
+      .thumb { display: block; width: 100%; }
+      .content { padding: .75rem 1rem 1rem; }
+      .title { margin: 0 0 .25rem 0; }
+      .meta { font-size: 0.9em; opacity: .8; }
+      .back { display: inline-block; margin-bottom: 1rem; }
+      @media (min-width: 860px) { .list { grid-template-columns: repeat(2, 1fr); } }
+    </style>
+  </head>
+  <body>
+    <Header />
+    <main>
+      <a class="back" href="/categories">← All categories</a>
+      <h1 style="margin-bottom: 1rem;">Category: {category}</h1>
+      <ul class="list">
+        {posts.map((post) => {
+          const key = post.data.heroImage?.toLowerCase() as keyof typeof heroMap | undefined;
+          const imageSrc = key ? heroMap[key] : undefined;
+          return (
+            <li class="item">
+              <a href={`/blog/${post.id}/`}>
+                {imageSrc && (
+                  <Image class="thumb" src={imageSrc} alt={post.data.title} width={720} height={360} loading="lazy" />
+                )}
+                <div class="content">
+                  <h3 class="title">{post.data.title}</h3>
+                  <div class="meta"><FormattedDate date={post.data.pubDate} /> · {post.data.description}</div>
+                </div>
+              </a>
+            </li>
+          );
+        })}
+      </ul>
+    </main>
+    <Footer />
+  </body>
+</html>
+

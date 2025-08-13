@@ -1,0 +1,47 @@
+---
+import BaseHead from '../../components/BaseHead.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import { SITE_TITLE, SITE_DESCRIPTION } from '../../consts';
+import { getCollection } from 'astro:content';
+
+const posts = await getCollection('blog');
+const tagCounts = new Map<string, number>();
+
+for (const post of posts) {
+  const tags = (post.data.tags ?? []).map((t) => t.toLowerCase());
+  for (const t of tags) tagCounts.set(t, (tagCounts.get(t) || 0) + 1);
+}
+
+const tags = Array.from(tagCounts.entries())
+  .sort((a, b) => b[1] - a[1]);
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <BaseHead title={`${SITE_TITLE} | Tags`} description={SITE_DESCRIPTION} />
+    <style>
+      .tag-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 1rem; }
+      .tag-card { display: flex; align-items: center; justify-content: space-between; padding: 0.75rem 1rem; border-radius: 10px; background: var(--bg-accent); color: var(--text-color); text-decoration: none; }
+      .tag-card:hover { box-shadow: var(--box-shadow); }
+      .count { opacity: 0.7; font-size: 0.9em; }
+    </style>
+  </head>
+  <body>
+    <Header />
+    <main>
+      <h1 style="margin-bottom: 1rem;">Tags</h1>
+      <div class="tag-grid">
+        {tags.map(([tag, count]) => (
+          <a class="tag-card" href={`/tags/${tag}/`}>
+            <span>#{tag}</span>
+            <span class="count">{count}</span>
+          </a>
+        ))}
+      </div>
+    </main>
+    <Footer />
+  </body>
+</html>
+

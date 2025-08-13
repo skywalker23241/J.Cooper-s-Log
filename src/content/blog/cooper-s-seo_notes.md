@@ -3,6 +3,7 @@ title: 'Cooper的SEO总结'
 description: '我的seo总结,之前很早开始总结的了,有一些有用的东西吧.'
 pubDate: 'Apr 16 2025'
 heroImage: 'hero-b'
+tags: ['搜索引擎优化', '人工智能']
 ---
 > *这里记录着我对seo的理解和总结*
 

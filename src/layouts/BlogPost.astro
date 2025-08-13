@@ -19,7 +19,7 @@ import heroH from '../assets/what-is-mcp.png';
 
 type Props = CollectionEntry<'blog'>['data'];
 
-const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
+const { title, description, pubDate, updatedDate, heroImage, tags = [], category } = Astro.props;
 const heroImageMap = {
   'hero-a': heroA,
   'hero-b': heroB,
@@ -36,7 +36,7 @@ const currentHero = heroImage?.toLowerCase(); // 动态获取 heroImage 并小�
 ---
 
 <html lang="en">
-	<head>		
+	<head>
 		<BaseHead title={title} description={description} />
 		<style>
 			main {
@@ -78,9 +78,13 @@ const currentHero = heroImage?.toLowerCase(); // 动态获取 heroImage 并小�
 				font-style: italic;
 				color: var(--text-color-secondary);
 			}
+			.meta-row { display: flex; flex-wrap: wrap; gap: .5rem; justify-content: center; margin-top: .5rem; }
+			.chips { display: flex; flex-wrap: wrap; gap: .5rem; justify-content: center; }
+			.chip { display: inline-block; padding: .25rem .5rem; border-radius: 999px; background: var(--bg-accent); color: var(--text-color); text-decoration: none; font-size: .85em; }
+			.chip:hover { box-shadow: var(--box-shadow); }
 		</style>
 
-		
+
 
 		<script type="text/javascript">
 			(function(c,l,a,r,i,t,y){
@@ -111,7 +115,7 @@ const currentHero = heroImage?.toLowerCase(); // 动态获取 heroImage 并小�
 					width={1020}
 					height={510}
 					loading="eager"
-				  />				  
+				  />
 				</div>
 				<div class="prose">
 					<div class="title">
@@ -126,6 +130,16 @@ const currentHero = heroImage?.toLowerCase(); // 动态获取 heroImage 并小�
 							}
 						</div>
 						<h1>{title}</h1>
+						<div class="meta-row">
+							{category && (
+								<a class="chip" href={`/categories/${encodeURIComponent(category.toLowerCase().trim())}/`}>📁 {category}</a>
+							)}
+							<div class="chips">
+								{tags.map((t) => (
+									<a class="chip" href={`/tags/${encodeURIComponent(t.toLowerCase())}/`}>#{t}</a>
+								))}
+							</div>
+						</div>
 						<hr />
 					</div>
 					<slot />

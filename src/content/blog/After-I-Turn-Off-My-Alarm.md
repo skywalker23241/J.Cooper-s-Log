@@ -3,6 +3,7 @@ title: '关掉闹钟之后...'
 description: '本来早上这篇写的好好的,不知为何手机端的github被杀后台了,只能晚上重写.'
 pubDate: 'Mar 28 2025'
 heroImage: 'hero-c'
+tags: ['随笔']
 ---
 ### 导言
 

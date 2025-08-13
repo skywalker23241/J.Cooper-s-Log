@@ -1,0 +1,114 @@
+---
+import BaseHead from '../../components/BaseHead.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import FormattedDate from '../../components/FormattedDate.astro';
+import { SITE_TITLE, SITE_DESCRIPTION } from '../../consts';
+import { getCollection } from 'astro:content';
+import { Image } from 'astro:assets';
+import heroA from '../../assets/cooper-s-coding-notes.jpg';
+import heroB from '../../assets/cooper-s-seo-summary.jpg';
+import heroC from '../../assets/after-i-turn-off-alarm.webp';
+import heroD from '../../assets/about-cooper.jpg';
+import heroE from '../../assets/tools.gif';
+import heroF from '../../assets/how-to-use-vpn-correctly.jpg';
+import heroG from '../../assets/root-one-plus-8t-9008-oxgen-os.jpg';
+import heroH from '../../assets/what-is-mcp.png';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog');
+  const set = new Set<string>();
+  for (const post of posts) {
+    (post.data.tags ?? []).forEach((t) => set.add(t.toLowerCase().trim()));
+  }
+  return Array.from(set).map((t) => ({ params: { tag: t }, props: { tag: t } }));
+}
+
+const { tag } = Astro.props as { tag: string };
+const posts = (await getCollection('blog'))
+  .filter((p) => (p.data.tags ?? []).some((t) => t.toLowerCase().trim() === tag))
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+
+const heroMap = {
+  'hero-a': heroA,
+  'hero-b': heroB,
+  'hero-c': heroC,
+  'hero-d': heroD,
+  'hero-e': heroE,
+  'hero-f': heroF,
+  'hero-g': heroG,
+  'hero-h': heroH,
+} as const;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <BaseHead title={`${SITE_TITLE} | Tag: ${tag}`} description={SITE_DESCRIPTION} />
+    <style>
+      .toolbar { display: flex; align-items: center; gap: .75rem; margin-bottom: 1rem; }
+      .sort-btn { padding: .4rem .75rem; border-radius: 8px; border: 1px solid var(--toc-border); background: var(--bg-accent); cursor: pointer; }
+      .list { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: 1fr; gap: 1rem; }
+      .item { border-radius: 12px; background: var(--bg-accent); overflow: hidden; transition: box-shadow .2s ease; }
+      .item a { display: block; color: var(--text-color); text-decoration: none; }
+      .thumb { display: block; width: 100%; }
+      .content { padding: .75rem 1rem 1rem; }
+      .title { margin: 0 0 .25rem 0; }
+      .meta { font-size: 0.9em; opacity: .8; }
+      .back { display: inline-block; margin-bottom: 1rem; }
+      @media (min-width: 860px) { .list { grid-template-columns: repeat(2, 1fr); } }
+    </style>
+  </head>
+  <body>
+    <Header />
+    <main>
+      <a class="back" href="/tags">← All tags</a>
+      <div class="toolbar">
+        <h1 style="margin: 0;">Tag: #{tag}</h1>
+        <div style="margin-left: auto; display: flex; gap: .5rem;">
+          <button class="sort-btn" id="sort-newest">Newest</button>
+          <button class="sort-btn" id="sort-oldest">Oldest</button>
+        </div>
+      </div>
+      <ul class="list" id="post-list">
+        {posts.map((post) => {
+          const key = post.data.heroImage?.toLowerCase() as keyof typeof heroMap | undefined;
+          const imageSrc = key ? heroMap[key] : undefined;
+          return (
+            <li class="item" data-date={post.data.pubDate.valueOf().toString()}>
+              <a href={`/blog/${post.id}/`}>
+                {imageSrc && (
+                  <Image class="thumb" src={imageSrc} alt={post.data.title} width={720} height={360} loading="lazy" />
+                )}
+                <div class="content">
+                  <h3 class="title">{post.data.title}</h3>
+                  <div class="meta"><FormattedDate date={post.data.pubDate} /> · {post.data.description}</div>
+                </div>
+              </a>
+            </li>
+          );
+        })}
+      </ul>
+    </main>
+    <Footer />
+    <script is:inline>
+      const list = document.getElementById('post-list');
+      const newest = document.getElementById('sort-newest');
+      const oldest = document.getElementById('sort-oldest');
+      if (list && newest && oldest) {
+        const sort = (dir) => {
+          const items = Array.from(list.querySelectorAll('li'));
+          items.sort((a, b) => {
+            const da = Number(a.getAttribute('data-date'));
+            const db = Number(b.getAttribute('data-date'));
+            return dir === 'newest' ? db - da : da - db;
+          });
+          items.forEach((it) => list.appendChild(it));
+        };
+        newest.addEventListener('click', () => sort('newest'));
+        oldest.addEventListener('click', () => sort('oldest'));
+      }
+    </script>
+  </body>
+</html>
+

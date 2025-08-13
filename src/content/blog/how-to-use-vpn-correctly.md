@@ -3,6 +3,7 @@ title: '如何正确科学上网'
 description: '很早之前就想写的一篇教程,现在有机会写了......'
 pubDate: 'Apr 18 2025'
 heroImage: 'hero-f'
+tags: ['网络代理']
 ---
 ## 前言
 

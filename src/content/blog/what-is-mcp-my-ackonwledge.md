@@ -3,6 +3,7 @@ title: 'MCP的使用心得'
 description: '感觉离AGI又近了一步,hhhhhh'
 pubDate: 'Apr 24 2025'
 heroImage: 'hero-h'
+tags: ['人工智能', '编程']
 ---
 记录一下自己根据这篇[博客](https://www.datacamp.com/tutorial/mcp-model-context-protocol?utm_source=chatgpt.com)试用MCP的心得吧
 

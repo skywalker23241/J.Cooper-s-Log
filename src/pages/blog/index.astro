@@ -18,7 +18,6 @@ const posts = (await getCollection('blog')).sort(
 	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
 );
 
-const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
 const heroMap = {
   'hero-a': heroA,
   'hero-b': heroB,
@@ -28,8 +27,6 @@ const heroMap = {
   "hero-h": heroH,
 };
 
-// 确保当前的 hero 图片与 frontmatter 中的 heroImage 对应
-// The hero image mapping logic will be moved inside the map function
 ---
 
 <!doctype html>
@@ -37,72 +34,29 @@ const heroMap = {
 	<head>
 		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
 		<style>
-			main {
-				width: 960px;
-			}
-			ul {
-				display: flex;
-				flex-wrap: wrap;
-				gap: 2rem;
-				list-style-type: none;
-				margin: 0;
-				padding: 0;
-			}
-			ul li {
-				width: calc(50% - 1rem);
-			}
-			ul li * {
-				text-decoration: none;
-				transition: 0.2s ease;
-			}
-			ul li:first-child {
-				width: 100%;
-				margin-bottom: 1rem;
-				text-align: center;
-			}
-			ul li:first-child img {
-				width: 100%;
-			}
-			ul li:first-child .title {
-				font-size: 2.369rem;
-			}
-			ul li img {
-				margin-bottom: 0.5rem;
-				border-radius: 12px;
-			}
-			ul li a {
-				display: block;
-			}
-			.title {
-				margin: 0;
-				color: var(--text-color);
-				line-height: 1;
-			}
-			.date {
-				margin: 0;
-				color: var(--text-color-secondary);
-			}
-			ul li a:hover h4,
-			ul li a:hover .date {
-				color: var(--accent-color);
-			}
-			ul a:hover img {
-				box-shadow: var(--box-shadow);
-			}
+			main { width: 960px; }
+			ul { display: flex; flex-wrap: wrap; gap: 2rem; list-style-type: none; margin: 0; padding: 0; }
+			ul li { width: calc(50% - 1rem); }
+			ul li * { text-decoration: none; transition: 0.2s ease; }
+			ul li:first-child { width: 100%; margin-bottom: 1rem; text-align: center; }
+			ul li:first-child img { width: 100%; }
+			ul li:first-child .title { font-size: 2.369rem; }
+			ul li img { margin-bottom: 0.5rem; border-radius: 12px; }
+			ul li a { display: block; }
+			.title { margin: 0; color: var(--text-color); line-height: 1; }
+			.date { margin: 0; color: var(--text-color-secondary); }
+			.desc { margin: .25rem 0 0.5rem 0; color: var(--text-color); opacity: .9; }
+			.meta { display: flex; flex-wrap: wrap; gap: .5rem; align-items: center; }
+			.chip { display: inline-block; padding: .25rem .5rem; border-radius: 999px; background: var(--bg-accent); color: var(--text-color); font-size: .8em; }
+			.meta a.chip { text-decoration: none; }
+			ul li a:hover h4, ul li a:hover .date { color: var(--accent-color); }
+			ul a:hover img { box-shadow: var(--box-shadow); }
 			@media (max-width: 720px) {
-				ul {
-					gap: 0.5em;
-				}
-				ul li {
-					width: 100%;
-					text-align: center;
-				}
-				ul li:first-child {
-					margin-bottom: 0;
-				}
-				ul li:first-child .title {
-					font-size: 1.563em;
-				}
+				ul { gap: 0.5em; }
+				ul li { width: 100%; text-align: center; }
+				ul li:first-child { margin-bottom: 0; }
+				ul li:first-child .title { font-size: 1.563em; }
+				.meta { justify-content: center; }
 			}
 		</style>
 	</head>
@@ -114,23 +68,32 @@ const heroMap = {
 					{
 						posts.map((post) => {
 							const imageSrc = heroMap[post.data.heroImage as keyof typeof heroMap];
+							const tags = (post.data.tags ?? []).map((t) => t.toLowerCase());
+							const category = post.data.category?.toLowerCase().trim();
 							return (
 								<li>
 									<a href={`/blog/${post.id}/`}>
 										{imageSrc && (
-										<Image 
-										src={imageSrc} 
-										alt="title" 
-										width={720} 
+										<Image
+										src={imageSrc}
+										alt="title"
+										width={720}
 										height={360}
 										loading="lazy"
 										/>
 										)}
 										<h4 class="title">{post.data.title}</h4>
-										<p class="date">
-											<FormattedDate date={post.data.pubDate} />
-										</p>
+										<p class="date"><FormattedDate date={post.data.pubDate} /></p>
+										<p class="desc">{post.data.description}</p>
 									</a>
+									<div class="meta">
+										{category && (
+											<a class="chip" href={`/categories/${encodeURIComponent(category)}/`}>📁 {category}</a>
+										)}
+										{tags.map((t) => (
+											<a class="chip" href={`/tags/${encodeURIComponent(t)}/`}>#{t}</a>
+										))}
+									</div>
 								</li>
 							);
 						})
