@@ -219,4 +219,10 @@ hr {
     background-color: var(--toc-hover);
   }
 
-  
+
+
+
+/* Fix mobile horizontal overflow and long content */
+html, body { overflow-x: hidden; }
+pre { max-width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+code, kbd, samp { word-break: break-word; }

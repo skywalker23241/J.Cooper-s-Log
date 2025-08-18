@@ -11,7 +11,7 @@ import heroA from '../assets/cooper-s-coding-notes.jpg';
 import heroB from '../assets/cooper-s-seo-summary.jpg';
 import heroC from '../assets/after-i-turn-off-alarm.webp';
 import heroD from '../assets/about-cooper.jpg';
-import heroE from '../assets/tools.gif';
+import heroE from '../assets/sere-tools.png';
 import heroF from '../assets/how-to-use-vpn-correctly.jpg';
 import heroG from '../assets/root-one-plus-8t-9008-oxgen-os.jpg';
 import heroH from '../assets/what-is-mcp.png';
@@ -44,6 +44,9 @@ const currentHero = heroImage?.toLowerCase(); // 动态获取 heroImage 并小�
 				max-width: 100%;
 				margin: 0;
 			}
+				/* Avoid horizontal overflow from layout */
+				:root, html, body { overflow-x: hidden; }
+
 			.hero-image {
 				width: 100%;
 			}

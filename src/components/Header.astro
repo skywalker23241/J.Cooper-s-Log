@@ -9,7 +9,10 @@ import { SITE_TITLE } from '../consts';
 		<nav class="nav-main">
 			<!-- Logo/Brand -->
 			<div class="brand">
-				<h1><a href="/" class="brand-link">{SITE_TITLE}</a></h1>
+				<a href="/" class="brand-link">
+					<img class="brand-logo logo-light" src="/favicon.svg" alt="J.Cooper's Logo" width="30" height="30" />
+					<img class="brand-logo logo-dark" src="/favicon-dark.svg" alt="J.Cooper's Logo (Dark)" width="30" height="30" />
+				</a>
 			</div>
 
 			<!-- Main Navigation -->
@@ -120,6 +123,10 @@ import { SITE_TITLE } from '../consts';
 		padding: 0 1rem;
 	}
 
+			/* Mobile safe area and prevent clipping on right edge */
+			.container { padding-right: max(1rem, env(safe-area-inset-right)); }
+
+
 	/* Main Navigation */
 	.nav-main {
 		display: grid;
@@ -128,6 +135,12 @@ import { SITE_TITLE } from '../consts';
 		min-height: 4rem;
 		gap: 1rem;
 	}
+
+			/* ensure right side has room for the toggle button on small screens */
+			@media (max-width: 768px) {
+				.nav-actions { padding-right: 0.25rem; }
+			}
+
 
 	/* Brand/Logo */
 	.brand {
@@ -149,6 +162,24 @@ import { SITE_TITLE } from '../consts';
 
 	.brand-link:hover {
 		color: var(--accent);
+	}
+
+	/* Brand logo theming */
+	.brand { display: flex; align-items: center; justify-content: center; }
+	.brand-link { display: inline-flex; align-items: center; justify-content: center; height: 100%; }
+	.brand-logo { display: inline; transition: opacity .2s ease; }
+	.logo-dark { display: none; }
+	:global(html[data-theme="dark"]) .logo-light { display: none !important; }
+	:global(html[data-theme="dark"]) .logo-dark { display: inline-block !important; }
+	/* Fallback for first paint when data-theme is not set yet */
+	@media (prefers-color-scheme: dark) {
+		:global(html:not([data-theme])) .logo-light { display: none !important; }
+		:global(html:not([data-theme])) .logo-dark { display: inline-block !important; }
+	}
+
+	/* Mobile: center brand in header while keeping actions visible */
+	@media (max-width: 768px) {
+		.brand { position: absolute; left: 50%; transform: translateX(-50%); }
 	}
 
 	/* Navigation Links */
@@ -233,7 +264,7 @@ import { SITE_TITLE } from '../consts';
 	/* 汉堡图标容器 */
 	.hamburger-icon,
 	.close-icon {
-		position: absolute;
+		position: unset;
 		display: flex;
 		flex-direction: column;
 		justify-content: center;
@@ -386,6 +417,12 @@ import { SITE_TITLE } from '../consts';
 			display: flex;
 			justify-content: space-between;
 		}
+
+
+			/* Make sure the toggle icon doesn't get cut off */
+			@supports (padding: max(0px)) {
+				.mobile-menu-toggle { padding-right: max(0.5rem, env(safe-area-inset-right)); }
+			}
 
 		.nav-links {
 			display: none;
