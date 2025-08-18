@@ -1,6 +1,6 @@
 ---
-title: '关掉闹钟之后...'
-description: '本来早上这篇写的好好的,不知为何手机端的github被杀后台了,只能晚上重写.'
+title: '关掉闹钟之后'
+description: '随手写的一些东西, 可能是对闹钟和自己作息生物钟的一个反思吧'
 pubDate: 'Mar 28 2025'
 heroImage: 'hero-c'
 tags: ['随笔']

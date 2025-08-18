@@ -1,11 +1,11 @@
 ---
 title: 'Cooper的编程笔记'
-description: '写代码记的一些笔记,放这吧.'
+description: 'Cooper的编程笔记，记录一些编程的碎碎念，主要是记录一些对编程的理解和经验。'
 pubDate: 'Apr 18 2025'
 heroImage: 'hero-a'
 tags: ['编程']
 ---
-Project_code-notes
+> *这里记录着我对编程的理解和经验*
 
 ***2025.03.24 这是我的第一条笔记，github存储，come on!***
 

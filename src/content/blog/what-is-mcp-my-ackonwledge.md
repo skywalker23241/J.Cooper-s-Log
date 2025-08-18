@@ -1,6 +1,6 @@
 ---
 title: 'MCP的使用心得'
-description: '感觉离AGI又近了一步,hhhhhh'
+description: '记录一下自己试用MCP的心得吧，这玩意不久以后应该就要商用了'
 pubDate: 'Apr 24 2025'
 heroImage: 'hero-h'
 tags: ['人工智能', '编程']

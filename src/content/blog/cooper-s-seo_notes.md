@@ -1,6 +1,6 @@
 ---
 title: 'Cooper的SEO总结'
-description: '我的seo总结,之前很早开始总结的了,有一些有用的东西吧.'
+description: 'Cooper对SEO的一些碎碎念，内容很杂乱，主要是记录一些对SEO的理解和经验'
 pubDate: 'Apr 16 2025'
 heroImage: 'hero-b'
 tags: ['搜索引擎优化', '人工智能']
