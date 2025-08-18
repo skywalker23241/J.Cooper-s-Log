@@ -1,7 +1,7 @@
 ---
 title: 'Cooper的编程笔记'
 description: 'Cooper的编程笔记，记录一些编程的碎碎念，主要是记录一些对编程的理解和经验。'
-pubDate: 'Apr 18 2025'
+pubDate: 'Aug 18 2025'
 heroImage: 'hero-a'
 tags: ['编程']
 ---
@@ -2580,6 +2580,14 @@ This experience I’m describing is what psychologists call “flow” — a  me
 
 结合我们的网站来说，那些显示重定向的网址应该是权重不够或者说是流量不够好，没有受到Google足够的重视，可能在GSC里面可以添加这些页面的索引吧。
 
+# 关于PRD、SPEC、BMAD
+
+PRD：产品需求文档（Product Requirement Document）。它详细描述了产品的特性、功能、用户故事、用例、业务规则和技术要求，是产品开发的基础文件。
+
+SPEC：规格书（Specification）。它通常指技术规格书，详细说明了产品或系统的技术实现细节，包括设计、接口、数据结构、算法等。在某些语境下也可以笼指各种类型的需求或设计文档，比如功能规格书 (Functional Specification) 或设计规格书 (Design Specification)。
+
+BMAD：业务模型工件文档。这通常是“Business Model Artifact Document”的缩写，指在业务建模过程中创建的各种文档，用于捕述和理解业务流程、结构、信息和规则。这些文档可能包括业务流程图、组织结构图、数据模型、业务规则列表等。
+
 编辑于
 
-###### Fri Jun 27 16:59:28 CST 2025
+###### Mon Aug 18 18:07:40 CST 2025
