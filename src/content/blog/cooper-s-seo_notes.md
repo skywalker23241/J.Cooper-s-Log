@@ -1,9 +1,9 @@
 ---
-title: 'Cooper的SEO总结'
-description: 'Cooper对SEO的一些碎碎念，内容很杂乱，主要是记录一些对SEO的理解和经验'
+title: "Cooper's SEO Summary"
+description: "Cooper's random thoughts on SEO - a messy collection documenting my understanding and experiences with search engine optimization"
 pubDate: 'Apr 16 2025'
 heroImage: 'hero-b'
-tags: ['搜索引擎优化', '人工智能']
+tags: ['SEO', 'AI']
 ---
 > *这里记录着我对seo的理解和总结*
 

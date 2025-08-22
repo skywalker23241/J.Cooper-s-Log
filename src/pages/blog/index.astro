@@ -2,9 +2,10 @@
 import BaseHead from '../../components/BaseHead.astro';
 import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
+import FormattedDate from '../../components/FormattedDate.astro';
+import Tag from '../../components/Tag.astro';
 import { SITE_TITLE, SITE_DESCRIPTION } from '../../consts';
 import { getCollection } from 'astro:content';
-import FormattedDate from '../../components/FormattedDate.astro';
 import { Image } from 'astro:assets';
 import heroA from '../../assets/cooper-s-coding-notes.jpg';
 import heroB from '../../assets/cooper-s-seo-summary.jpg';
@@ -27,7 +28,6 @@ const heroMap = {
   "hero-h": heroH,
   "hero-e": heroE,
 };
-
 ---
 
 <!doctype html>
@@ -35,85 +35,156 @@ const heroMap = {
 	<head>
 		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
 		<style>
-			main { width: 100%; max-width: 960px; margin: 0 auto; padding: 0 0rem; }
-			ul { display: flex; flex-wrap: wrap; gap: 2rem; list-style-type: none; margin: 0; padding: 0; }
-			ul li { width: calc(50% - 1rem); }
-			ul li * { text-decoration: none; transition: 0.2s ease; }
-			ul li:first-child { width: 100%; margin-bottom: 1rem; text-align: center; }
-			ul li:first-child img { width: 100%; }
-			ul li:first-child .title { font-size: 2.369rem; }
-			ul li img { width: 100%; height: auto; margin-bottom: 0.5rem; border-radius: 12px; }
-			ul li a { display: block; padding: 0.5rem; }
-			.title { margin: 0; color: var(--text-color); line-height: 1.2; word-wrap: break-word; }
-			.date { margin: 0; color: var(--text-color-secondary); }
-			.desc { margin: 0.5rem 0; color: var(--text-color); line-height: 1.4; }
-			.desc { margin: .25rem 0 0.5rem 0; color: var(--text-color); opacity: .9; }
-			.meta { display: flex; flex-wrap: wrap; gap: .5rem; align-items: center; }
-			.chip { display: inline-block; padding: .25rem .5rem; border-radius: 999px; background: var(--bg-accent); color: var(--text-color); font-size: .8em; }
-			.meta a.chip { text-decoration: none; }
-			ul li a:hover h4, ul li a:hover .date { color: var(--accent-color); }
-			ul a:hover img { box-shadow: var(--box-shadow); }
+			/* Blog list specific styles */
+			.blog-main {
+				width: 100%;
+				max-width: 960px;
+				margin: 0 auto;
+				padding: 0 1rem;
+			}
+			.blog-grid {
+				display: flex;
+				flex-wrap: wrap;
+				gap: 2rem;
+				list-style-type: none;
+				margin: 0;
+				padding: 0;
+			}
+			.blog-item {
+				width: calc(50% - 1rem);
+			}
+			.blog-item:first-child {
+				width: 100%;
+				margin-bottom: 1rem;
+				text-align: center;
+			}
+			.blog-item:first-child .blog-title {
+				font-size: 2.369rem;
+			}
+			.blog-link {
+				display: block;
+				padding: 0.5rem;
+				text-decoration: none;
+				transition: 0.2s ease;
+			}
+			.blog-image {
+				width: 100%;
+				height: auto;
+				margin-bottom: 0.5rem;
+				border-radius: 12px;
+				transition: box-shadow 0.2s ease;
+			}
+			.blog-title {
+				margin: 0;
+				color: var(--text-color);
+				line-height: 1.2;
+				word-wrap: break-word;
+				transition: color 0.2s ease;
+			}
+			.blog-date {
+				margin: 0;
+				color: var(--text-color);
+				opacity: 0.7;
+				transition: color 0.2s ease;
+			}
+			.blog-desc {
+				margin: 0.25rem 0 0.5rem 0;
+				color: var(--text-color);
+				opacity: 0.9;
+				line-height: 1.4;
+			}
+			.blog-meta {
+				display: flex;
+				flex-wrap: wrap;
+				gap: 0.5rem;
+				align-items: center;
+			}
+			.chip {
+				display: inline-block;
+				padding: 0.25rem 0.5rem;
+				border-radius: 999px;
+				background: var(--bg-accent);
+				color: var(--text-color);
+				font-size: 0.8em;
+				text-decoration: none;
+			}
+			.blog-link:hover .blog-title,
+			.blog-link:hover .blog-date {
+				color: var(--accent);
+			}
+			.blog-link:hover .blog-image {
+				box-shadow: var(--box-shadow);
+			}
 			@media (max-width: 720px) {
-				ul { gap: 0.5em; }
-				ul li { width: 100%; text-align: center; }
-				ul li:first-child { margin-bottom: 0; }
-				ul li:first-child .title { font-size: 1.563em; }
-				.meta { justify-content: center; }
-				/* Fix text overflow on mobile */
-				.title {
+				.blog-grid {
+					gap: 0.5rem;
+				}
+				.blog-item {
+					width: 100%;
+					text-align: center;
+				}
+				.blog-item:first-child {
+					margin-bottom: 0;
+				}
+				.blog-item:first-child .blog-title {
+					font-size: 1.563rem;
+				}
+				.blog-meta {
+					justify-content: center;
+				}
+				.blog-title {
 					font-size: 1.2rem;
 					line-height: 1.3;
 					margin-bottom: 0.5rem;
-					word-wrap: break-word;
-					overflow-wrap: break-word;
 				}
-				.desc {
+				.blog-desc {
 					font-size: 0.9rem;
 					line-height: 1.4;
 					margin: 0.5rem 0;
-					word-wrap: break-word;
-					overflow-wrap: break-word;
 					display: -webkit-box;
 					-webkit-line-clamp: 3;
 					-webkit-box-orient: vertical;
 					overflow: hidden;
 				}
-				.date { font-size: 0.85rem; }
+				.blog-date {
+					font-size: 0.85rem;
+				}
 			}
 		</style>
 	</head>
 	<body>
 		<Header />
-		<main>
+		<main class="blog-main">
 			<section>
-				<ul>
+				<ul class="blog-grid">
 					{
 						posts.map((post) => {
 							const imageSrc = heroMap[post.data.heroImage as keyof typeof heroMap];
 							const tags = (post.data.tags ?? []).map((t) => t.toLowerCase());
 							const category = post.data.category?.toLowerCase().trim();
 							return (
-								<li>
-									<a href={`/blog/${post.id}/`}>
+								<li class="blog-item">
+									<a href={`/blog/${post.id}/`} class="blog-link">
 										{imageSrc && (
 										<Image
-										src={imageSrc}
-										alt="title"
-										width={720}
-										height={360}
-										loading="lazy"
+											src={imageSrc}
+											alt="title"
+											width={720}
+											height={360}
+											loading="lazy"
+											class="blog-image"
 										/>
 										)}
-										<h4 class="title">{post.data.title}</h4>
-										<p class="date"><FormattedDate date={post.data.pubDate} /></p>
-										<p class="desc">{post.data.description}</p>
+										<h4 class="blog-title">{post.data.title}</h4>
+										<p class="blog-date"><FormattedDate date={post.data.pubDate} /></p>
+										<p class="blog-desc">{post.data.description}</p>
 									</a>
-									<div class="meta">
+									<div class="blog-meta">
 										{category && (
 											<a class="chip" href={`/categories/${encodeURIComponent(category)}/`}>📁 {category}</a>
 										)}
 										{tags.map((t) => (
-											<a class="chip" href={`/tags/${encodeURIComponent(t)}/`}>#{t}</a>
+											<Tag href={`/tags/${encodeURIComponent(t)}/`}>#{t}</Tag>
 										))}
 									</div>
 								</li>

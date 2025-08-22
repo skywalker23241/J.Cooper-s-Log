@@ -1,9 +1,9 @@
 ---
-title: 'MCP的使用心得'
-description: '记录一下自己试用MCP的心得吧，这玩意不久以后应该就要商用了'
+title: 'My Experience with MCP'
+description: 'Recording my experience with MCP (Model Context Protocol) - this thing should be commercialized soon'
 pubDate: 'Apr 24 2025'
 heroImage: 'hero-h'
-tags: ['人工智能', '编程']
+tags: ['AI', 'Programming']
 ---
 记录一下自己根据这篇[博客](https://www.datacamp.com/tutorial/mcp-model-context-protocol?utm_source=chatgpt.com)试用MCP的心得吧
 

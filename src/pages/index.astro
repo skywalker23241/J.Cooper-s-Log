@@ -2,9 +2,21 @@
 import BaseHead from '../components/BaseHead.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
+import FormattedDate from '../components/FormattedDate.astro';
+import Card from '../components/Card.astro';
+import Button from '../components/Button.astro';
+import Tag from '../components/Tag.astro';
 import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
+import { getCollection } from 'astro:content';
 import { Image } from 'astro:assets';
-import indexImage from '../assets/index.jpg'; // 注意路径
+import indexImage from '../assets/index.jpg';
+import headpic from '../assets/headpic.jpg';
+
+// 获取最近的博客文章
+const posts = await getCollection('blog');
+const recentPosts = posts
+  .sort((a, b) => new Date(b.data.pubDate).getTime() - new Date(a.data.pubDate).getTime())
+  .slice(0, 6); // 显示最近6篇文章
 ---
 
 <!doctype html>
@@ -14,36 +26,155 @@ import indexImage from '../assets/index.jpg'; // 注意路径
 		<script async src="https://www.googletagmanager.com/gtag/js?id=G-DKECP77S2Y"></script>
 		<script>
 		window.dataLayer = window.dataLayer || [];
-		function gtag(){dataLayer.push(arguments);}
+		function gtag(...args: any[]){(window as any).dataLayer.push(args);}
 		gtag('js', new Date());
 
 		gtag('config', 'G-DKECP77S2Y');
 		</script>
 		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+		<style>
+			/* Page-specific styles only */
+			.image-section {
+				text-align: center;
+			}
+			.image-title {
+				font-size: 1.2rem;
+				font-weight: 600;
+				margin-bottom: 0.5rem;
+				color: var(--text-color);
+			}
+			.image-caption {
+				font-size: 0.9rem;
+				color: var(--text-color);
+				opacity: 0.7;
+				line-height: 1.5;
+				margin-top: 1rem;
+				font-style: italic;
+			}
+			.hero-image-sidebar {
+				width: 100%;
+				height: auto;
+				border-radius: 12px;
+				margin: 1rem 0;
+				box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+				transition: transform 0.3s ease;
+			}
+			.hero-image-sidebar:hover {
+				transform: translateY(-2px);
+			}
+		</style>
 	</head>
 	<body>
 		<Header />
-		<main>
-			<div style="max-width: 600px; margin: 50px auto; color: #333; text-align: center; line-height: 1.6;">
-				<h1 style="font-size: 3.5rem; margin-bottom: 10px;">Howdy! :)</h1>
-				<h3 style="font-size: 1.5rem; font-weight: normal; margin-bottom: 5px;">I'm Jack.Cooper</h3>
-				<h4 style="font-size: 1rem; color: #666; font-weight: normal; margin-bottom: 20px;">🇨🇳(Junbo Le/乐俊波)</h4>
-				<p style="font-size: 2rem; padding: 0 10px; margin-bottom: 30px;">
-				  Welcome to my personal log! I'm a website rookie developer!</p>	
-				  <p>I will share some of my thoughts and experiences, also some of my <a href="https://github.com/skywalker23241/Optimize_post_ai" target="_blank">pojects</a> and interesting things.</p> 
-				  <p>Hope you like!❤</p>
-				</p>
-				<Image
-				src={indexImage}
-				alt="Ready player one"
-				widths={[400, 800, 1200]}
-				sizes="(max-width: 768px) 100vw, 800px"
-				style="border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);"
-				loading="eager"
-				/>
-			  </div>
-			  
-		</main>
+		
+		<!-- Main Content -->
+		<div class="main-content">
+			<!-- Hero + Recent Posts -->
+			<section class="content-area">
+				<!-- Hero Section -->
+				<div class="hero-section">
+					<h1 class="hero-title">Howdy Pal!</h1>
+					<h3 class="hero-subtitle">I'm Jack.Cooper</h3>
+					<h4 style="font-size: 1rem; color: var(--text-color); opacity: 0.7; font-weight: normal; margin-bottom: 1rem;">🇨🇳(Junbo Le/乐俊波)</h4>
+					<p class="hero-description">
+						Welcome to my personal log! I'm a website rookie developer!<br>
+						I will share some of my thoughts and experiences, also some of my 
+						<a href="https://github.com/skywalker23241/Optimize_post_ai" target="_blank" style="color: var(--accent);">projects</a> 
+						and interesting things. Hope you like!
+					</p>
+				</div>
+
+				<!-- Recent Posts -->
+				<div class="recent-posts">
+					<div class="section-header">
+						<h2 class="section-title">
+							📝 Recently Posts
+						</h2>
+						<Button href="/blog" variant="inline">
+							View all posts →
+						</Button>
+					</div>
+					<div class="posts-grid">
+						{recentPosts.map((post) => (
+							<Card as="article" class="post-card">
+								<h3 class="post-title">
+									<a href={`/blog/${post.id}/`}>{post.data.title}</a>
+								</h3>
+								<div class="post-date">
+									<FormattedDate date={post.data.pubDate} />
+								</div>
+								<p class="post-description">{post.data.description}</p>
+								{post.data.tags && (
+									<div class="post-tags">
+										{post.data.tags.slice(0, 3).map((tag) => (
+											<Tag>{tag}</Tag>
+										))}
+									</div>
+								)}
+							</Card>
+						))}
+					</div>
+				</div>
+			</section>
+
+			<!-- Sidebar -->
+			<aside class="sidebar">
+				<!-- Profile Card -->
+				<div class="sidebar-card profile-section">
+					<Image
+						src={headpic}
+						alt="Jack Cooper"
+						width={100}
+						height={100}
+						class="profile-avatar"
+					/>
+					<h3 class="profile-name">J.C</h3>
+					<p class="profile-title">Pilot of BravoTengo-7274</p>
+					<p class="profile-bio">
+						We should away from the crowds and know the truth.<br>
+						<i>--吾當歸於遠境，知量無窮。</i>
+					</p>
+					<div class="profile-contact">
+						<div class="contact-item">
+							<svg class="contact-icon" fill="currentColor" viewBox="0 0 20 20">
+								<path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"/>
+								<path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"/>
+							</svg>
+							<a href="mailto:lejunbo@qq.com" class="contact-text">E-mail</a>
+						</div>
+						<div class="contact-item">
+							<svg class="contact-icon" fill="currentColor" viewBox="0 0 20 20">
+								<path fill-rule="evenodd" d="M10 0C4.477 0 0 4.484 0 10.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0110 4.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.203 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.942.359.31.678.921.678 1.856 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0020 10.017C20 4.484 15.522 0 10 0z" clip-rule="evenodd"/>
+							</svg>
+							<a href="https://github.com/skywalker23241" target="_blank" class="contact-text">GitHub</a>
+						</div>
+						<div class="contact-item">
+							<svg class="contact-icon" fill="currentColor" viewBox="0 0 20 20">
+								<path d="M6.29 18.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0020 4.77a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 01.8 7.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 010 16.407a11.616 11.616 0 006.29 1.84"/>
+							</svg>
+							<a href="https://x.com/Leonozzzzz" target="_blank" class="contact-text">Twitter</a>
+						</div>
+					</div>
+				</div>
+
+				<!-- Hero Image Card -->
+				<div class="sidebar-card image-section">
+					<h3 class="image-title">Panem et circenses</h3>
+					<Image
+						src={indexImage}
+						alt="Ready player one"
+						widths={[320, 640]}
+						sizes="(max-width: 768px) 100vw, 320px"
+						class="hero-image-sidebar"
+						loading="lazy"
+					/>
+					<p class="image-caption">
+						Give them bread and circuses, and they will never revolt.
+					</p>
+				</div>
+			</aside>
+		</div>
+
 		<Footer />
 	</body>
 </html>

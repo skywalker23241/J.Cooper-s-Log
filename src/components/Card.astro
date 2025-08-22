@@ -1,0 +1,26 @@
+---
+export interface Props {
+  class?: string;
+  variant?: 'default' | 'large' | 'hover';
+  as?: keyof HTMLElementTagNameMap;
+}
+
+const { 
+  class: className = '', 
+  variant = 'default', 
+  as: Element = 'div',
+  ...props 
+} = Astro.props;
+
+const cardClasses: Record<string, string> = {
+  default: 'card',
+  large: 'card card-large',
+  hover: 'card'
+};
+
+const finalClass = `${cardClasses[variant]} ${className}`.trim();
+---
+
+<Element class={finalClass} {...props}>
+  <slot />
+</Element>

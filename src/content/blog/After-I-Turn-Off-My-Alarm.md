@@ -1,9 +1,9 @@
 ---
-title: '关掉闹钟之后'
-description: '随手写的一些东西, 可能是对闹钟和自己作息生物钟的一个反思吧'
+title: 'After I Turn Off My Alarm'
+description: 'Random thoughts on alarms and biological clocks - a reflection on sleep patterns and daily routines'
 pubDate: 'Mar 28 2025'
 heroImage: 'hero-c'
-tags: ['随笔']
+tags: ['Essays']
 ---
 ### 导言
 

@@ -1,9 +1,9 @@
 ---
-title: 'Cooper的编程笔记'
-description: 'Cooper的编程笔记，记录一些编程的碎碎念，主要是记录一些对编程的理解和经验。'
+title: "Cooper's Programming Notes"
+description: "Cooper's programming notes - random thoughts on coding, documenting my understanding and experiences in programming"
 pubDate: 'Aug 18 2025'
 heroImage: 'hero-a'
-tags: ['编程']
+tags: ['Programming']
 ---
 > *这里记录着我对编程的理解和经验*
 

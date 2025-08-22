@@ -1,0 +1,46 @@
+---
+export interface Props {
+  href?: string;
+  variant?: 'primary' | 'secondary' | 'inline';
+  size?: 'sm' | 'md' | 'lg';
+  class?: string;
+  target?: string;
+  rel?: string;
+}
+
+const { 
+  href,
+  variant = 'primary',
+  size = 'md',
+  class: className = '',
+  target,
+  rel,
+  ...props 
+} = Astro.props;
+
+const baseClasses = 'btn';
+const variantClasses: Record<string, string> = {
+  primary: 'btn-primary',
+  secondary: 'btn-secondary',
+  inline: 'btn-inline'
+};
+const sizeClasses: Record<string, string> = {
+  sm: 'btn-sm',
+  md: '',
+  lg: 'btn-lg'
+};
+
+const finalClass = `${baseClasses} ${variantClasses[variant]} ${sizeClasses[size]} ${className}`.trim();
+
+const Element = href ? 'a' : 'button';
+---
+
+{href ? (
+  <a class={finalClass} href={href} target={target} rel={rel} {...props}>
+    <slot />
+  </a>
+) : (
+  <button class={finalClass} type="button" {...props}>
+    <slot />
+  </button>
+)}

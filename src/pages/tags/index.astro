@@ -2,6 +2,7 @@
 import BaseHead from '../../components/BaseHead.astro';
 import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
+import Tag from '../../components/Tag.astro';
 import { SITE_TITLE, SITE_DESCRIPTION } from '../../consts';
 import { getCollection } from 'astro:content';
 
@@ -21,12 +22,6 @@ const tags = Array.from(tagCounts.entries())
 <html lang="en">
   <head>
     <BaseHead title={`${SITE_TITLE} | Tags`} description={SITE_DESCRIPTION} />
-    <style>
-      .tag-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 1rem; }
-      .tag-card { display: flex; align-items: center; justify-content: space-between; padding: 0.75rem 1rem; border-radius: 10px; background: var(--bg-accent); color: var(--text-color); text-decoration: none; }
-      .tag-card:hover { box-shadow: var(--box-shadow); }
-      .count { opacity: 0.7; font-size: 0.9em; }
-    </style>
   </head>
   <body>
     <Header />
@@ -34,10 +29,9 @@ const tags = Array.from(tagCounts.entries())
       <h1 style="margin-bottom: 1rem;">🏷️</h1>
       <div class="tag-grid">
         {tags.map(([tag, count]) => (
-          <a class="tag-card" href={`/tags/${tag}/`}>
-            <span>#{tag}</span>
-            <span class="count">{count}</span>
-          </a>
+          <Tag href={`/tags/${tag}/`} variant="card" count={count}>
+            #{tag}
+          </Tag>
         ))}
       </div>
     </main>

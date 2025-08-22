@@ -5,82 +5,84 @@ import { SITE_TITLE } from '../consts';
 ---
 
 <header>
-	<div class="container">
-		<nav class="nav-main">
-			<!-- Logo/Brand -->
-			<div class="brand">
-				<a href="/" class="brand-link">
-					<img class="brand-logo logo-light" src="/favicon.svg" alt="J.Cooper's Logo" width="30" height="30" />
-					<img class="brand-logo logo-dark" src="/favicon-dark.svg" alt="J.Cooper's Logo (Dark)" width="30" height="30" />
-				</a>
-			</div>
-
-			<!-- Main Navigation -->
-			<div class="nav-links">
-				<HeaderLink href="/" title="Howdy">😎</HeaderLink>
-				<HeaderLink href="/blog" title="Cooper's Log">📝</HeaderLink>
-				<HeaderLink href="/tags" title="Tags">🏷️</HeaderLink>
-				<HeaderLink href="/categories" title="Categories">📂</HeaderLink>
-				<HeaderLink href="/about" title="About Cooper">👤</HeaderLink>
-				<HeaderLink href="/tools" title="Cooper's Tools">🧰</HeaderLink>
-			</div>
-
-			<!-- Right Side Actions -->
-			<div class="nav-actions">
-				<div class="social-links">
-					<a href="https://x.com/Leonozzzzz" target="_blank" title="Follow J.Cooper on X" class="social-link">
-						<span class="sr-only">Follow J.Cooper on X</span>
-						<svg viewBox="0 0 16 16" aria-hidden="true" width="20" height="20">
-							<path fill="currentColor" d="M5.026 15c6.038 0 9.341-5.003 9.341-9.334 0-.14 0-.282-.006-.422A6.685 6.685 0 0 0 16 3.542a6.658 6.658 0 0 1-1.889.518 3.301 3.301 0 0 0 1.447-1.817 6.533 6.533 0 0 1-2.087.793A3.286 3.286 0 0 0 7.875 6.03a9.325 9.325 0 0 1-6.767-3.429 3.289 3.289 0 0 0 1.018 4.382A3.323 3.323 0 0 1 .64 6.575v.045a3.288 3.288 0 0 0 2.632 3.218 3.203 3.203 0 0 1-.865.115 3.23 3.23 0 0 1-.614-.057 3.283 3.283 0 0 0 3.067 2.277A6.588 6.588 0 0 1 .78 13.58a6.32 6.32 0 0 1-.78-.045A9.344 9.344 0 0 0 5.026 15z"></path>
-						</svg>
-					</a>
-					<a href="https://github.com/skywalker23241" target="_blank" title="Go to J.Cooper's GitHub" class="social-link">
-						<span class="sr-only">Go to J.Cooper's GitHub</span>
-						<svg viewBox="0 0 16 16" aria-hidden="true" width="20" height="20">
-							<path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"></path>
-						</svg>
-					</a>
-					<a href="/rss.xml" target="_blank" title="Subscribe to RSS Feed" class="social-link">
-						<span class="sr-only">Subscribe to RSS Feed</span>
-						<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16">
-							<path d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2z"/>
-							<path d="M5.5 12a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0m-3-8.5a1 1 0 0 1 1-1c5.523 0 10 4.477 10 10a1 1 0 1 1-2 0 8 8 0 0 0-8-8 1 1 0 0 1-1-1m0 4a1 1 0 0 1 1-1 6 6 0 0 1 6 6 1 1 0 1 1-2 0 4 4 0 0 0-4-4 1 1 0 0 1-1-1"/>
-						</svg>
+	<div class="header-inner">
+		<div class="container">
+			<nav class="nav-main">
+				<!-- Logo/Brand -->
+				<div class="brand">
+					<a href="/" class="brand-link">
+						<img class="brand-logo logo-light" src="/favicon.svg" alt="J.Cooper's Logo" width="30" height="30" />
+						<img class="brand-logo logo-dark" src="/favicon-dark.svg" alt="J.Cooper's Logo (Dark)" width="30" height="30" />
 					</a>
 				</div>
-				<ThemeToggle />
-			</div>
 
-			<!-- Mobile Menu Button -->
-			<button class="mobile-menu-toggle" aria-label="Toggle mobile menu" type="button">
-				<div class="hamburger-icon">
-					<span class="hamburger"></span>
-					<span class="hamburger"></span>
-					<span class="hamburger"></span>
+				<!-- Main Navigation -->
+				<div class="nav-links">
+					<HeaderLink href="/" title="Home">Home</HeaderLink>
+					<HeaderLink href="/blog" title="Blog">Blog</HeaderLink>
+					<HeaderLink href="/tags" title="Tags">Tags</HeaderLink>
+					<HeaderLink href="/categories" title="Recent Reading">Recent Reading</HeaderLink>
+					<HeaderLink href="/about" title="About">About</HeaderLink>
+					<HeaderLink href="/tools" title="Tools">Tools</HeaderLink>
 				</div>
-				<div class="close-icon">
-					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-						<line x1="18" y1="6" x2="6" y2="18"></line>
-						<line x1="6" y1="6" x2="18" y2="18"></line>
-					</svg>
+
+				<!-- Right Side Actions -->
+				<div class="nav-actions">
+					<div class="social-links">
+						<a href="https://x.com/Leonozzzzz" target="_blank" title="Follow J.Cooper on X" class="social-link">
+							<span class="sr-only">Follow J.Cooper on X</span>
+							<svg viewBox="0 0 16 16" aria-hidden="true" width="20" height="20">
+								<path fill="currentColor" d="M5.026 15c6.038 0 9.341-5.003 9.341-9.334 0-.14 0-.282-.006-.422A6.685 6.685 0 0 0 16 3.542a6.658 6.658 0 0 1-1.889.518 3.301 3.301 0 0 0 1.447-1.817 6.533 6.533 0 0 1-2.087.793A3.286 3.286 0 0 0 7.875 6.03a9.325 9.325 0 0 1-6.767-3.429 3.289 3.289 0 0 0 1.018 4.382A3.323 3.323 0 0 1 .64 6.575v.045a3.288 3.288 0 0 0 2.632 3.218 3.203 3.203 0 0 1-.865.115 3.23 3.23 0 0 1-.614-.057 3.283 3.283 0 0 0 3.067 2.277A6.588 6.588 0 0 1 .78 13.58a6.32 6.32 0 0 1-.78-.045A9.344 9.344 0 0 0 5.026 15z"></path>
+							</svg>
+						</a>
+						<a href="https://github.com/skywalker23241" target="_blank" title="Go to J.Cooper's GitHub" class="social-link">
+							<span class="sr-only">Go to J.Cooper's GitHub</span>
+							<svg viewBox="0 0 16 16" aria-hidden="true" width="20" height="20">
+								<path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"></path>
+							</svg>
+						</a>
+						<a href="/rss.xml" target="_blank" title="Subscribe to RSS Feed" class="social-link">
+							<span class="sr-only">Subscribe to RSS Feed</span>
+							<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16">
+								<path d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2z"/>
+								<path d="M5.5 12a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0m-3-8.5a1 1 0 0 1 1-1c5.523 0 10 4.477 10 10a1 1 0 1 1-2 0 8 8 0 0 0-8-8 1 1 0 0 1-1-1m0 4a1 1 0 0 1 1-1 6 6 0 0 1 6 6 1 1 0 1 1-2 0 4 4 0 0 0-4-4 1 1 0 0 1-1-1"/>
+							</svg>
+						</a>
+					</div>
+					<ThemeToggle />
 				</div>
-			</button>
-		</nav>
 
-		<!-- Mobile Navigation -->
-		<nav class="nav-mobile">
-			<div class="mobile-nav-links">
-				<HeaderLink href="/" title="Howdy">😎 Howdy</HeaderLink>
-				<HeaderLink href="/blog" title="Cooper's Log">📝 Cooper's Log</HeaderLink>
-				<HeaderLink href="/tags" title="Tags">🏷️ Tags</HeaderLink>
-				<HeaderLink href="/categories" title="Categories">📂 Categories</HeaderLink>
-				<HeaderLink href="/about" title="About Cooper">👤 About Cooper</HeaderLink>
-				<HeaderLink href="/tools" title="Cooper's Tools">🧰 Cooper's Tools</HeaderLink>
-			</div>
-		</nav>
+				<!-- Mobile Menu Button -->
+				<button class="mobile-menu-toggle" aria-label="Toggle mobile menu" type="button">
+					<div class="hamburger-icon">
+						<span class="hamburger"></span>
+						<span class="hamburger"></span>
+						<span class="hamburger"></span>
+					</div>
+					<div class="close-icon">
+						<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+							<line x1="18" y1="6" x2="6" y2="18"></line>
+							<line x1="6" y1="6" x2="18" y2="18"></line>
+						</svg>
+					</div>
+				</button>
+			</nav>
 
-		<!-- Mobile Menu Backdrop -->
-		<div class="mobile-backdrop"></div>
+			<!-- Mobile Navigation -->
+			<nav class="nav-mobile">
+				<div class="mobile-nav-links">
+					<HeaderLink href="/" title="Home">Home</HeaderLink>
+					<HeaderLink href="/blog" title="Blog">Blog</HeaderLink>
+					<HeaderLink href="/tags" title="Tags">Tags</HeaderLink>
+					<HeaderLink href="/categories" title="Recent Reading">Recent Reading</HeaderLink>
+					<HeaderLink href="/about" title="About">About</HeaderLink>
+					<HeaderLink href="/tools" title="Tools">Tools</HeaderLink>
+				</div>
+			</nav>
+
+			<!-- Mobile Menu Backdrop -->
+			<div class="mobile-backdrop"></div>
+		</div>
 	</div>
 </header>
 <style>
@@ -89,9 +91,25 @@ import { SITE_TITLE } from '../consts';
 		position: sticky;
 		top: 0;
 		z-index: 100;
+		padding: 0.75rem 1rem 0;
+		background: transparent;
+	}
+
+	.header-inner {
 		background: var(--header-bg);
-		box-shadow: var(--header-shadow);
-		border-bottom: 1px solid var(--border-color, rgba(0, 0, 0, 0.1));
+		border: 1px solid var(--border-color, rgba(0, 0, 0, 0.05));
+		backdrop-filter: blur(10px);
+		-webkit-backdrop-filter: blur(10px);
+		box-shadow: 
+			0 1px 3px rgba(0, 0, 0, 0.04),
+			0 4px 12px rgba(0, 0, 0, 0.02),
+			0 0 0 1px rgba(255, 255, 255, 0.05);
+		transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+		border-radius: 16px;
+		max-width: 1200px;
+		margin: 0 auto;
+		position: relative;
+		overflow: hidden;
 	}
 
 	/* 防止主题切换时的闪烁 */
@@ -118,9 +136,7 @@ import { SITE_TITLE } from '../consts';
 	}
 
 	.container {
-		max-width: 1200px;
-		margin: 0 auto;
-		padding: 0 1rem;
+		padding: 0;
 	}
 
 			/* Mobile safe area and prevent clipping on right edge */
@@ -132,8 +148,9 @@ import { SITE_TITLE } from '../consts';
 		display: grid;
 		grid-template-columns: 1fr auto 1fr;
 		align-items: center;
-		min-height: 4rem;
+		min-height: 4.5rem;
 		gap: 1rem;
+		padding: 0 1.5rem;
 	}
 
 			/* ensure right side has room for the toggle button on small screens */
@@ -155,13 +172,18 @@ import { SITE_TITLE } from '../consts';
 	}
 
 	.brand-link {
-		color: var(--text-color, var(--black));
+		color: var(--text-color);
 		text-decoration: none;
-		transition: color 0.2s ease;
+		transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+		border-radius: 8px;
+		padding: 0.5rem;
+		margin: -0.5rem;
 	}
 
 	.brand-link:hover {
 		color: var(--accent);
+		background: var(--bg-accent);
+		transform: scale(1.05);
 	}
 
 	/* Brand logo theming */
@@ -187,9 +209,14 @@ import { SITE_TITLE } from '../consts';
 		display: flex;
 		align-items: center;
 		justify-content: center;
-		gap: 0.5rem;
+		gap: 0.25rem;
 		grid-column: 2;
 		position: relative;
+		padding: 0.5rem;
+		background: var(--bg-accent);
+		border-radius: 10px;
+		border: 1px solid var(--border-color, rgba(0, 0, 0, 0.05));
+		box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.02);
 	}
 
 	/* Navigation Actions */
@@ -197,8 +224,9 @@ import { SITE_TITLE } from '../consts';
 		display: flex;
 		align-items: center;
 		justify-content: flex-end;
-		gap: 1rem;
+		gap: 1.5rem;
 		grid-column: 3;
+		padding-right: 0.5rem;
 	}
 
 	/* Social Links */
@@ -206,22 +234,29 @@ import { SITE_TITLE } from '../consts';
 		display: flex;
 		align-items: center;
 		gap: 0.5rem;
+		margin-right: 0.25rem;
 	}
 
 	.social-link {
 		display: flex;
 		align-items: center;
 		justify-content: center;
-		padding: 0.5rem;
-		color: var(--text-color, var(--black));
+		padding: 0.625rem;
+		color: var(--text-color);
 		text-decoration: none;
-		border-radius: 0.375rem;
-		transition: all 0.2s ease;
+		border-radius: 10px;
+		transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+		border: 1px solid transparent;
+		min-width: 2.5rem;
+		height: 2.5rem;
 	}
 
 	.social-link:hover {
 		color: var(--accent);
-		background-color: var(--bg-accent, rgba(0, 0, 0, 0.05));
+		background: var(--bg-accent);
+		border-color: var(--accent);
+		transform: translateY(-2px);
+		box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 	}
 
 	/* Mobile Menu */
@@ -229,25 +264,32 @@ import { SITE_TITLE } from '../consts';
 		display: none;
 		justify-content: center;
 		align-items: center;
-		width: 2.5rem;
-		height: 2.5rem;
-		background: none;
-		border: none;
+		width: 2.75rem;
+		height: 2.75rem;
+		background: var(--bg-accent);
+		border: 1px solid var(--border-color, rgba(0, 0, 0, 0.05));
 		cursor: pointer;
 		padding: 0.5rem;
-		border-radius: 0.375rem;
-		transition: background-color 0.3s ease, transform 0.2s ease;
+		border-radius: 12px;
+		transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 		position: relative;
 		overflow: hidden;
+		box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
 	}
 
 	.mobile-menu-toggle:hover {
-		background-color: var(--bg-accent, rgba(0, 0, 0, 0.05));
-		transform: scale(1.05);
+		background: var(--accent);
+		border-color: var(--accent);
+		transform: translateY(-2px);
+		box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+	}
+
+	.mobile-menu-toggle:hover .hamburger {
+		background-color: white;
 	}
 
 	.mobile-menu-toggle:active {
-		transform: scale(0.95);
+		transform: translateY(0) scale(0.95);
 	}
 
 	/* 按钮点击动画 */
@@ -327,12 +369,12 @@ import { SITE_TITLE } from '../consts';
 	/* Mobile Navigation */
 	.nav-mobile {
 		position: absolute;
-		top: 100%;
-		left: 0;
-		right: 0;
-		background: var(--header-bg);
-		border-top: 1px solid var(--border-color, rgba(0, 0, 0, 0.1));
-		box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+		top: calc(100% + 0.5rem);
+		left: 1rem;
+		right: 1rem;
+		background: var(--bg-accent);
+		border: 1px solid var(--border-color, rgba(0, 0, 0, 0.05));
+		box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1), 0 16px 64px rgba(0, 0, 0, 0.05);
 		transform: translateY(-20px) scale(0.95);
 		opacity: 0;
 		visibility: hidden;
@@ -340,7 +382,9 @@ import { SITE_TITLE } from '../consts';
 		z-index: 50;
 		max-height: 0;
 		overflow: hidden;
-		border-radius: 0 0 1rem 1rem;
+		border-radius: 16px;
+		backdrop-filter: blur(10px);
+		-webkit-backdrop-filter: blur(10px);
 	}
 
 	.nav-mobile.active {
@@ -353,8 +397,8 @@ import { SITE_TITLE } from '../consts';
 	.mobile-nav-links {
 		display: flex;
 		flex-direction: column;
-		gap: 0.5rem;
-		padding: 1rem;
+		gap: 0.25rem;
+		padding: 1.5rem;
 		transform: translateY(-20px);
 		transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1) 0.1s;
 	}
@@ -365,13 +409,15 @@ import { SITE_TITLE } from '../consts';
 
 	/* 移动端链接样式 */
 	.mobile-nav-links a {
-		padding: 0.75rem 1rem;
-		border-radius: 0.5rem;
+		padding: 1rem 1.25rem;
+		border-radius: 12px;
 		transition: all 0.3s ease;
-		border-left: 3px solid transparent;
+		border: 1px solid transparent;
 		opacity: 0;
 		transform: translateX(-20px);
 		animation: slideInLeft 0.4s ease forwards;
+		background: var(--bg-color);
+		box-shadow: 0 1px 4px rgba(0, 0, 0, 0.02);
 	}
 
 	/* 链接逐个出现的动画 */
@@ -389,10 +435,11 @@ import { SITE_TITLE } from '../consts';
 
 	.mobile-nav-links a:hover,
 	.mobile-nav-links a.active {
-		background-color: var(--bg-accent);
-		border-left-color: var(--accent);
-		transform: translateX(8px);
-		box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+		background: var(--accent);
+		color: white !important;
+		border-color: var(--accent);
+		transform: translateX(4px) translateY(-1px);
+		box-shadow: 0 4px 16px rgba(var(--accent-rgb, 35, 55, 255), 0.2);
 	}
 
 	/* 菜单关闭时的动画 */
@@ -413,16 +460,16 @@ import { SITE_TITLE } from '../consts';
 
 	/* Responsive Design */
 	@media (max-width: 768px) {
+		header {
+			padding: 0.5rem;
+		}
+
 		.nav-main {
 			display: flex;
 			justify-content: space-between;
+			min-height: 4rem;
+			padding: 0 1rem;
 		}
-
-
-			/* Make sure the toggle icon doesn't get cut off */
-			@supports (padding: max(0px)) {
-				.mobile-menu-toggle { padding-right: max(0.5rem, env(safe-area-inset-right)); }
-			}
 
 		.nav-links {
 			display: none;
@@ -435,19 +482,47 @@ import { SITE_TITLE } from '../consts';
 		.mobile-menu-toggle {
 			display: flex;
 		}
+
+		/* Brand 在移动端居中 */
+		.brand {
+			position: absolute;
+			left: 50%;
+			transform: translateX(-50%);
+		}
+
+		/* 移动端右侧操作区域 */
+		.nav-actions {
+			gap: 1rem;
+			padding-right: 0.25rem;
+		}
+
+		.nav-mobile {
+			left: 0.5rem;
+			right: 0.5rem;
+		}
 	}
 
 	@media (max-width: 480px) {
-		.container {
-			padding: 0 0.75rem;
+		header {
+			padding: 0.25rem;
 		}
 
 		.nav-main {
-			min-height: 3.5rem;
+			min-height: 3.75rem;
+			padding: 0 0.75rem;
 		}
 
 		.brand h1 {
 			font-size: 1.125rem;
+		}
+
+		.mobile-nav-links {
+			padding: 1.25rem;
+		}
+
+		.mobile-nav-links a {
+			padding: 0.875rem 1rem;
+			font-size: 0.9rem;
 		}
 	}
 
@@ -467,16 +542,17 @@ import { SITE_TITLE } from '../consts';
 	/* Navigation link styles with higher specificity */
 	.nav-links a,
 	.mobile-nav-links a {
-		padding: 1em 0.5em;
+		padding: 0.75rem 1rem;
 		color: var(--text-color) !important;
-		border-bottom: 4px solid transparent;
+		border: 1px solid transparent;
 		text-decoration: none;
-		transition: opacity 0.1s ease,
-					color 0.3s cubic-bezier(0.4, 0, 0.2, 1),
-					border-bottom-color 0.3s cubic-bezier(0.4, 0, 0.2, 1),
-					background-color 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-		border-radius: 0.375rem;
-		background-color: transparent !important;
+		transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+		border-radius: 8px;
+		background: transparent;
+		font-size: 0.9rem;
+		font-weight: 500;
+		position: relative;
+		overflow: hidden;
 	}
 
 	/* 主题过渡时的特殊处理 */
@@ -489,15 +565,19 @@ import { SITE_TITLE } from '../consts';
 
 	.nav-links a.active,
 	.mobile-nav-links a.active {
-		border-bottom-color: var(--accent);
-		color: var(--accent) !important;
+		background: var(--accent);
+		color: white !important;
+		border-color: var(--accent);
+		box-shadow: 0 2px 8px rgba(var(--accent-rgb, 35, 55, 255), 0.3);
 	}
 
 	.nav-links a:hover,
 	.mobile-nav-links a:hover {
-		border-bottom-color: var(--accent);
-		color: var(--accent) !important;
-		background-color: var(--bg-accent, rgba(0, 0, 0, 0.05));
+		background: var(--accent);
+		color: white !important;
+		border-color: var(--accent);
+		transform: translateY(-1px);
+		box-shadow: 0 4px 12px rgba(var(--accent-rgb, 35, 55, 255), 0.2);
 	}
 
 	/* Brand link styles */
@@ -525,6 +605,20 @@ import { SITE_TITLE } from '../consts';
 		opacity: 1;
 		visibility: visible;
 		pointer-events: auto;
+	}
+
+	/* 暗色主题适配 */
+	:global([data-theme="dark"]) .header-inner {
+		box-shadow: 
+			0 1px 3px rgba(0, 0, 0, 0.3),
+			0 4px 12px rgba(0, 0, 0, 0.2),
+			0 0 0 1px rgba(255, 255, 255, 0.1);
+		border-color: rgba(255, 255, 255, 0.1);
+	}
+
+	:global([data-theme="dark"]) .nav-links {
+		box-shadow: inset 0 1px 3px rgba(255, 255, 255, 0.05);
+		border-color: rgba(255, 255, 255, 0.1);
 	}
 </style>
 

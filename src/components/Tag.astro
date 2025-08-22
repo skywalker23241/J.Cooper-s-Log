@@ -1,0 +1,29 @@
+---
+export interface Props {
+  href?: string;
+  variant?: 'default' | 'card';
+  class?: string;
+  count?: number;
+}
+
+const { 
+  href,
+  variant = 'default',
+  class: className = '',
+  count,
+  ...props 
+} = Astro.props;
+
+const baseClass = variant === 'card' ? 'tag-card' : 'tag';
+const finalClass = `${baseClass} ${className}`.trim();
+
+const Element = href ? 'a' : 'span';
+const elementProps = href ? { href, ...props } : props;
+---
+
+<Element class={finalClass} {...elementProps}>
+  <slot />
+  {count !== undefined && variant === 'card' && (
+    <span class="count">{count}</span>
+  )}
+</Element>

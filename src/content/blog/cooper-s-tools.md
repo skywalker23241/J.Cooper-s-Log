@@ -3,12 +3,12 @@ title: "SERE-KIT"
 description: "Survival,Evasion,Resistance,Extraction."
 pubDate: 2025-08-18
 heroImage: "hero-e"
-category: "工具"
-tags: ["工具", "效率", "资源"]
+tags: ["Tools", "Efficiency", "Resources"]
 ---
 > ***人类和动物除了智慧上的差别以外，最大的区别并不是我们会使用工具，而是我们会制造工具***
 
 ## 目录
+
 - [SEO](#seo)
 - [AI](#ai)
 - [Proxy](#proxy)

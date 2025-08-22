@@ -1,9 +1,9 @@
 ---
-title: '如何正确科学上网'
-description: '科学上网的正确姿势，一篇简单的教程'
+title: 'How to Use VPN Correctly'
+description: 'The right way to use VPN - a simple tutorial on proper VPN usage'
 pubDate: 'Apr 18 2025'
 heroImage: 'hero-f'
-tags: ['网络代理']
+tags: ['Proxy']
 ---
 ## 前言
 

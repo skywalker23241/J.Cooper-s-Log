@@ -1,9 +1,9 @@
 ---
-title: '记9008线刷OP8T'
-description: '一次9008线刷OnePlus8T发生的趣事(无聊的事情)，再也不乱刷机了'
+title: 'Flashing OnePlus 8T via 9008 Mode'
+description: 'An interesting (boring) experience flashing OnePlus 8T via 9008 mode - never flashing carelessly again'
 pubDate: 'Apr 20 2025'
 heroImage: 'hero-g'
-tags: ['刷机']
+tags: ['Firmware']
 ---
 记一次9008线刷OnePlus8T发生的趣事(无聊的事情)
 
