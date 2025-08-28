@@ -8,6 +8,7 @@
 	color-scheme: light;
 	--accent: #2337ff;
 	--accent-dark: #000d8a;
+	--accent-rgb: 35, 55, 255;
 	--black: 15, 18, 25;
 	--gray: 96, 115, 159;
 	--gray-light: 229, 233, 240;
@@ -18,7 +19,7 @@
 		0 16px 32px rgba(var(--gray), 33%);
 	--bg-color: #fff;
 	--text-color: rgb(var(--gray-dark));
-	--header-bg: #fff;
+	--header-bg: rgba(255, 255, 255, 0.9);
 	--header-shadow: 0 2px 8px rgba(var(--black), 5%);
 	--code-bg: rgb(var(--gray-light));
 	--blockquote-border: var(--accent);
@@ -30,13 +31,22 @@
 	--toc-hover: #eff6ff;
 	--icon-color: rgb(var(--gray-dark));
 	--bg-accent: rgba(var(--gray), 0.1);
+	--border-color: rgba(0, 0, 0, 0.1);
+}
+
+/* 移动端专用CSS变量 */
+@media (max-width: 768px) {
+	:root {
+		--box-shadow: 0 1px 4px rgba(var(--gray), 20%), 0 4px 12px rgba(var(--gray), 15%);
+		--header-bg: rgba(255, 255, 255, 0.95);
+	}
 }
 
 [data-theme="dark"] {
 	color-scheme: dark;
 	--bg-color: rgb(var(--black));
 	--text-color: rgb(var(--gray-light));
-	--header-bg: rgb(var(--black));
+	--header-bg: rgba(15, 18, 25, 0.9);
 	--header-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
 	--code-bg: rgb(var(--gray-dark));
 	--blockquote-border: var(--accent);
@@ -48,6 +58,15 @@
 	--toc-hover: rgba(var(--gray), 0.2);
 	--icon-color: rgb(var(--gray-light));
 	--bg-accent: rgba(var(--gray-light), 0.1);
+	--border-color: rgba(255, 255, 255, 0.1);
+}
+
+/* 移动端暗色主题优化 */
+@media (max-width: 768px) {
+	[data-theme="dark"] {
+		--box-shadow: 0 1px 4px rgba(0, 0, 0, 0.4), 0 4px 12px rgba(0, 0, 0, 0.3);
+		--header-bg: rgba(15, 18, 25, 0.95);
+	}
 }
 
 @font-face {
@@ -227,7 +246,7 @@ html, body { overflow-x: hidden; }
 pre { max-width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch; }
 code, kbd, samp { word-break: break-word; }
 
-/* Common Layout Styles */
+/* Common Layout Styles - 强化移动端优化 */
 .main-content {
 	max-width: 1200px;
 	margin: 0 auto;
@@ -236,10 +255,14 @@ code, kbd, samp { word-break: break-word; }
 	grid-template-columns: 1fr 320px;
 	gap: 3rem;
 	align-items: start;
+	width: 100%;
+	box-sizing: border-box;
 }
 
 .content-area {
-	min-width: 0;
+	min-width: 0; /* 防止flex/grid子项目溢出 */
+	width: 100%;
+	box-sizing: border-box;
 }
 
 .sidebar {
@@ -248,15 +271,21 @@ code, kbd, samp { word-break: break-word; }
 	gap: 2rem;
 	position: sticky;
 	top: 2rem;
+	width: 100%;
+	box-sizing: border-box;
 }
 
-/* Card Components */
+/* Card Components - 强化移动端优化 */
 .card {
 	background: var(--bg-accent);
 	border-radius: 12px;
 	padding: 1.5rem;
 	transition: all 0.3s ease;
 	border: 1px solid var(--border-color, rgba(0, 0, 0, 0.1));
+	width: 100%;
+	max-width: 100%;
+	box-sizing: border-box;
+	overflow: hidden; /* 防止内容溢出 */
 }
 
 .card:hover {
@@ -268,6 +297,32 @@ code, kbd, samp { word-break: break-word; }
 	padding: 2rem;
 	border-radius: 16px;
 	box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+}
+
+/* 移动端卡片优化 */
+@media (max-width: 768px) {
+	.card {
+		padding: 1.25rem;
+		border-radius: 10px;
+		margin: 0; /* 确保没有额外的外边距 */
+	}
+	
+	.card-large {
+		padding: 1.5rem;
+		border-radius: 12px;
+	}
+}
+
+@media (max-width: 480px) {
+	.card {
+		padding: 1rem;
+		border-radius: 8px;
+	}
+	
+	.card-large {
+		padding: 1.25rem;
+		border-radius: 10px;
+	}
 }
 
 /* Section Headers */
@@ -294,17 +349,54 @@ code, kbd, samp { word-break: break-word; }
 	margin-bottom: 0;
 }
 
-/* Grid Layouts */
+/* Grid Layouts - 优化移动端响应式 */
 .posts-grid {
 	display: grid;
-	grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-	gap: 1.5rem;
+	grid-template-columns: 1fr; /* 移动端默认单列 */
+	gap: 1rem;
+}
+
+/* 小屏幕设备优化 */
+@media (min-width: 480px) {
+	.posts-grid {
+		grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+		gap: 1.25rem;
+	}
+}
+
+/* 中等屏幕设备 */
+@media (min-width: 768px) {
+	.posts-grid {
+		grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+		gap: 1.5rem;
+	}
+}
+
+/* 大屏幕设备 */
+@media (min-width: 1024px) {
+	.posts-grid {
+		grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+		gap: 2rem;
+	}
 }
 
 .tag-grid {
 	display: grid;
-	grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-	gap: 1rem;
+	grid-template-columns: 1fr; /* 移动端默认单列 */
+	gap: 0.75rem;
+}
+
+@media (min-width: 480px) {
+	.tag-grid {
+		grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+		gap: 1rem;
+	}
+}
+
+@media (min-width: 768px) {
+	.tag-grid {
+		grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+	}
 }
 
 /* Button Components */
@@ -479,13 +571,20 @@ code, kbd, samp { word-break: break-word; }
 	line-height: 1.6;
 }
 
-/* Post Components */
+/* Post Components - 强化移动端优化 */
 .post-card {
 	background: var(--bg-accent);
 	border-radius: 12px;
 	padding: 1.5rem;
 	transition: all 0.3s ease;
 	border: 1px solid var(--border-color, rgba(0, 0, 0, 0.1));
+	width: 100%;
+	max-width: 100%;
+	box-sizing: border-box;
+	overflow: hidden;
+	display: flex;
+	flex-direction: column;
+	height: 100%; /* 确保卡片高度一致 */
 }
 
 .post-card:hover {
@@ -499,12 +598,17 @@ code, kbd, samp { word-break: break-word; }
 	margin-bottom: 0.5rem;
 	color: var(--text-color);
 	line-height: 1.3;
+	word-wrap: break-word;
+	overflow-wrap: break-word;
+	hyphens: auto;
 }
 
 .post-title a {
 	color: inherit;
 	text-decoration: none;
 	transition: color 0.3s ease;
+	display: block;
+	word-break: break-word;
 }
 
 .post-title a:hover {
@@ -516,6 +620,7 @@ code, kbd, samp { word-break: break-word; }
 	color: var(--text-color);
 	opacity: 0.7;
 	margin-bottom: 0.75rem;
+	flex-shrink: 0;
 }
 
 .post-description {
@@ -527,13 +632,18 @@ code, kbd, samp { word-break: break-word; }
 	-webkit-line-clamp: 3;
 	-webkit-box-orient: vertical;
 	overflow: hidden;
+	word-wrap: break-word;
+	overflow-wrap: break-word;
+	flex-grow: 1;
+	margin-bottom: 1rem;
 }
 
 .post-tags {
 	display: flex;
 	gap: 0.5rem;
-	margin-top: 1rem;
+	margin-top: auto; /* 把标签推到底部 */
 	flex-wrap: wrap;
+	flex-shrink: 0;
 }
 
 .post-tag {
@@ -543,23 +653,72 @@ code, kbd, samp { word-break: break-word; }
 	border-radius: 4px;
 	font-size: 0.75rem;
 	font-weight: 500;
+	white-space: nowrap;
 }
 
-/* Responsive Design */
+/* 移动端文章卡片优化 */
+@media (max-width: 768px) {
+	.post-card {
+		padding: 1.25rem;
+		border-radius: 10px;
+	}
+	
+	.post-title {
+		font-size: 1.125rem;
+		line-height: 1.4;
+	}
+	
+	.post-description {
+		font-size: 0.9rem;
+		-webkit-line-clamp: 2; /* 移动端减少显示行数 */
+	}
+}
+
+@media (max-width: 480px) {
+	.post-card {
+		padding: 1rem;
+		border-radius: 8px;
+	}
+	
+	.post-title {
+		font-size: 1rem;
+		line-height: 1.4;
+	}
+	
+	.post-description {
+		font-size: 0.85rem;
+		-webkit-line-clamp: 2;
+	}
+	
+	.post-date {
+		font-size: 0.8rem;
+	}
+	
+	.post-tag {
+		font-size: 0.7rem;
+		padding: 0.2rem 0.4rem;
+	}
+}
+
+/* Responsive Design - 强化移动端优化 */
 @media (max-width: 768px) {
 	.main-content {
 		grid-template-columns: 1fr;
 		gap: 2rem;
 		padding: 2rem 1rem;
+		width: 100%;
+		overflow-x: hidden; /* 防止水平滚动 */
 	}
 	
 	.sidebar {
 		position: static;
-		order: -1;
+		order: -1; /* 侧边栏移动到顶部 */
+		gap: 1.5rem;
 	}
 	
 	.posts-grid {
 		grid-template-columns: 1fr;
+		gap: 1.25rem;
 	}
 	
 	.card-large {
@@ -574,6 +733,8 @@ code, kbd, samp { word-break: break-word; }
 	
 	.btn-inline {
 		align-self: flex-end;
+		width: auto;
+		flex-shrink: 0;
 	}
 	
 	.hero-section {
@@ -588,9 +749,35 @@ code, kbd, samp { word-break: break-word; }
 	.hero-subtitle {
 		font-size: 1.25rem;
 	}
+	
+	/* 确保所有元素不超出屏幕宽度 */
+	* {
+		max-width: 100%;
+		box-sizing: border-box;
+	}
+	
+	/* 修复表格和长内容的水平溢出 */
+	pre {
+		max-width: 100%;
+		overflow-x: auto;
+		-webkit-overflow-scrolling: touch;
+	}
+	
+	code, kbd, samp {
+		word-break: break-word;
+	}
+	
+	img {
+		max-width: 100%;
+		height: auto;
+	}
 }
 
 @media (max-width: 480px) {
+	.main-content {
+		padding: 1.5rem 0.75rem;
+	}
+	
 	.hero-section {
 		padding: 1.5rem 1rem;
 		margin-bottom: 1.5rem;
@@ -606,5 +793,18 @@ code, kbd, samp { word-break: break-word; }
 	
 	.post-card {
 		padding: 1rem;
+	}
+	
+	.card {
+		padding: 1rem;
+	}
+	
+	/* 进一步减小间距 */
+	.posts-grid {
+		gap: 1rem;
+	}
+	
+	.sidebar {
+		gap: 1.25rem;
 	}
 }

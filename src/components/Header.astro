@@ -53,35 +53,24 @@ import { SITE_TITLE } from '../consts';
 				</div>
 
 				<!-- Mobile Menu Button -->
-				<button class="mobile-menu-toggle" aria-label="Toggle mobile menu" type="button">
-					<div class="hamburger-icon">
-						<span class="hamburger"></span>
-						<span class="hamburger"></span>
-						<span class="hamburger"></span>
-					</div>
-					<div class="close-icon">
-						<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-							<line x1="18" y1="6" x2="6" y2="18"></line>
-							<line x1="6" y1="6" x2="18" y2="18"></line>
-						</svg>
-					</div>
+				<button id="mobile-menu-btn" class="mobile-menu-btn" aria-label="Toggle mobile menu" type="button">
+					Menu
 				</button>
 			</nav>
 
 			<!-- Mobile Navigation -->
-			<nav class="nav-mobile">
-				<div class="mobile-nav-links">
-					<HeaderLink href="/" title="Home">Home</HeaderLink>
-					<HeaderLink href="/blog" title="Blog">Blog</HeaderLink>
-					<HeaderLink href="/tags" title="Tags">Tags</HeaderLink>
-					<HeaderLink href="/categories" title="Recent Reading">Recent Reading</HeaderLink>
-					<HeaderLink href="/about" title="About">About</HeaderLink>
-					<HeaderLink href="/tools" title="Tools">Tools</HeaderLink>
-				</div>
-			</nav>
-
-			<!-- Mobile Menu Backdrop -->
-			<div class="mobile-backdrop"></div>
+			<div id="mobile-menu" class="mobile-menu">
+				<nav class="mobile-menu-content">
+					<div class="mobile-menu-links">
+						<HeaderLink href="/" title="Home">Home</HeaderLink>
+						<HeaderLink href="/blog" title="Blog">Blog</HeaderLink>
+						<HeaderLink href="/tags" title="Tags">Tags</HeaderLink>
+						<HeaderLink href="/categories" title="Recent Reading">Recent Reading</HeaderLink>
+						<HeaderLink href="/about" title="About">About</HeaderLink>
+						<HeaderLink href="/tools" title="Tools">Tools</HeaderLink>
+					</div>
+				</nav>
+			</div>
 		</div>
 	</div>
 </header>
@@ -109,7 +98,7 @@ import { SITE_TITLE } from '../consts';
 		max-width: 1200px;
 		margin: 0 auto;
 		position: relative;
-		overflow: hidden;
+		overflow: visible;
 	}
 
 	/* 防止主题切换时的闪烁 */
@@ -259,203 +248,265 @@ import { SITE_TITLE } from '../consts';
 		box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 	}
 
-	/* Mobile Menu */
-	.mobile-menu-toggle {
+	/* Mobile Menu Button */
+	.mobile-menu-btn {
 		display: none;
+		flex-direction: column;
 		justify-content: center;
 		align-items: center;
 		width: 2.75rem;
 		height: 2.75rem;
 		background: var(--bg-accent);
 		border: 1px solid var(--border-color, rgba(0, 0, 0, 0.05));
-		cursor: pointer;
-		padding: 0.5rem;
 		border-radius: 12px;
-		transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-		position: relative;
-		overflow: hidden;
+		cursor: pointer;
+		padding: 0;
+		transition: all 0.3s ease;
 		box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+		position: relative;
+		z-index: 10001;
 	}
 
-	.mobile-menu-toggle:hover {
+	.mobile-menu-btn:hover {
 		background: var(--accent);
 		border-color: var(--accent);
 		transform: translateY(-2px);
 		box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 	}
 
-	.mobile-menu-toggle:hover .hamburger {
+	.mobile-menu-btn:hover .hamburger-line {
 		background-color: white;
 	}
 
-	.mobile-menu-toggle:active {
-		transform: translateY(0) scale(0.95);
-	}
-
-	/* 按钮点击动画 */
-	.mobile-menu-toggle.clicking {
-		animation: menuButtonClick 0.3s ease;
-	}
-
-	@keyframes menuButtonClick {
-		0% { transform: scale(1); }
-		50% { transform: scale(1.1) rotate(5deg); }
-		100% { transform: scale(1); }
-	}
-
-	/* 汉堡图标容器 */
-	.hamburger-icon,
-	.close-icon {
-		position: unset;
-		display: flex;
-		flex-direction: column;
-		justify-content: center;
-		align-items: center;
-		width: 100%;
-		height: 100%;
-		transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-	}
-
-	/* 汉堡线条 */
-	.hamburger {
+	/* Hamburger Lines */
+	.hamburger-line {
+		display: block;
 		width: 1.25rem;
 		height: 2px;
 		background-color: var(--text-color);
 		margin: 2px 0;
-		transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+		transition: all 0.3s ease;
 		border-radius: 1px;
 		transform-origin: center;
 	}
 
-	/* 关闭图标 */
-	.close-icon {
-		opacity: 0;
-		visibility: hidden;
-		transform: rotate(180deg) scale(0.8);
-	}
-
-	.close-icon svg {
-		color: var(--text-color);
-		transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-	}
-
-	/* 菜单打开状态 */
-	.mobile-menu-toggle.active .hamburger-icon {
-		opacity: 0;
-		visibility: hidden;
-		transform: rotate(-180deg) scale(0.8);
-	}
-
-	.mobile-menu-toggle.active .close-icon {
-		opacity: 1;
-		visibility: visible;
-		transform: rotate(0deg) scale(1);
-	}
-
-	/* 汉堡线条动画 */
-	.mobile-menu-toggle.active .hamburger:nth-child(1) {
+	/* Active state for hamburger lines */
+	.mobile-menu-btn.active .hamburger-line:nth-child(1) {
 		transform: rotate(45deg) translate(5px, 5px);
 	}
 
-	.mobile-menu-toggle.active .hamburger:nth-child(2) {
+	.mobile-menu-btn.active .hamburger-line:nth-child(2) {
 		opacity: 0;
 		transform: scale(0);
 	}
 
-	.mobile-menu-toggle.active .hamburger:nth-child(3) {
+	.mobile-menu-btn.active .hamburger-line:nth-child(3) {
 		transform: rotate(-45deg) translate(7px, -6px);
 	}
 
-	/* Mobile Navigation */
-	.nav-mobile {
-		position: absolute;
-		top: calc(100% + 0.5rem);
-		left: 1rem;
-		right: 1rem;
-		background: var(--bg-accent);
-		border: 1px solid var(--border-color, rgba(0, 0, 0, 0.05));
-		box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1), 0 16px 64px rgba(0, 0, 0, 0.05);
-		transform: translateY(-20px) scale(0.95);
-		opacity: 0;
+	/* Mobile Menu */
+	.mobile-menu {
+		position: fixed;
+		top: 0;
+		left: 0;
+		width: 100vw;
+		height: 100vh;
+		z-index: 9999;
 		visibility: hidden;
-		transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
-		z-index: 50;
-		max-height: 0;
-		overflow: hidden;
-		border-radius: 16px;
-		backdrop-filter: blur(10px);
-		-webkit-backdrop-filter: blur(10px);
+		opacity: 0;
+		transition: all 0.3s ease;
+		pointer-events: none;
 	}
 
-	.nav-mobile.active {
-		transform: translateY(0) scale(1);
-		opacity: 1;
+	.mobile-menu.active {
 		visibility: visible;
-		max-height: 400px;
+		opacity: 1;
+		pointer-events: auto;
 	}
 
-	.mobile-nav-links {
+	/* Mobile Menu Overlay */
+	.mobile-menu-overlay {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		background: rgba(0, 0, 0, 0.5);
+		backdrop-filter: blur(4px);
+		-webkit-backdrop-filter: blur(4px);
+		transition: all 0.3s ease;
+	}
+
+	/* Mobile Menu Content */
+	.mobile-menu-content {
+		position: absolute;
+		top: 0;
+		right: 0;
+		width: 320px;
+		max-width: 90vw;
+		height: 100vh;
+		background: var(--bg-color);
+		border-left: 1px solid var(--border-color);
+		box-shadow: -8px 0 32px rgba(0, 0, 0, 0.15);
+		transform: translateX(100%);
+		transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 		display: flex;
 		flex-direction: column;
-		gap: 0.25rem;
+		overflow-y: auto;
+		overflow-x: hidden;
+	}
+
+	.mobile-menu.active .mobile-menu-content {
+		transform: translateX(0);
+	}
+
+	/* Mobile Menu Header */
+	.mobile-menu-header {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
 		padding: 1.5rem;
-		transform: translateY(-20px);
-		transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1) 0.1s;
+		border-bottom: 1px solid var(--border-color);
+		background: var(--bg-accent);
 	}
 
-	.nav-mobile.active .mobile-nav-links {
-		transform: translateY(0);
+	.mobile-menu-header h3 {
+		margin: 0;
+		font-size: 1.25rem;
+		font-weight: 600;
+		color: var(--text-color);
 	}
 
-	/* 移动端链接样式 */
-	.mobile-nav-links a {
+	.mobile-menu-close {
+		display: flex !important;
+		align-items: center !important;
+		justify-content: center !important;
+		width: 2rem !important;
+		height: 2rem !important;
+		background: transparent !important;
+		border: 1px solid var(--border-color) !important;
+		border-radius: 8px !important;
+		cursor: pointer !important;
+		color: var(--text-color) !important;
+		transition: all 0.2s ease !important;
+		outline: none !important;
+		-webkit-appearance: none !important;
+		-moz-appearance: none !important;
+		appearance: none !important;
+		box-shadow: none !important;
+		padding: 0 !important;
+		margin: 0 !important;
+		font-family: inherit !important;
+		font-size: inherit !important;
+	}
+
+	.mobile-menu-close:hover {
+		background: var(--bg-color) !important;
+		border-color: var(--text-color) !important;
+		color: var(--text-color) !important;
+		transform: scale(1.05) !important;
+		box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1) !important;
+	}
+
+	.mobile-menu-close:focus {
+		background: var(--bg-color) !important;
+		border-color: var(--text-color) !important;
+		color: var(--text-color) !important;
+		outline: 2px solid var(--text-color) !important;
+		outline-offset: 2px !important;
+	}
+
+	.mobile-menu-close:active {
+		background: var(--bg-color) !important;
+		border-color: var(--text-color) !important;
+		color: var(--text-color) !important;
+		transform: scale(0.95) !important;
+	}
+
+	.mobile-menu-close svg {
+		width: 16px !important;
+		height: 16px !important;
+		stroke-width: 2.5 !important;
+		stroke: currentColor !important;
+		fill: none !important;
+		pointer-events: none !important;
+	}
+
+	/* Mobile Menu Links */
+	.mobile-menu-links {
+		flex: 1;
+		padding: 1rem;
+		display: flex;
+		flex-direction: column;
+		gap: 0.5rem;
+	}
+
+	.mobile-menu-links a {
+		display: block;
 		padding: 1rem 1.25rem;
+		color: var(--text-color);
+		text-decoration: none;
 		border-radius: 12px;
-		transition: all 0.3s ease;
+		transition: all 0.2s ease;
 		border: 1px solid transparent;
-		opacity: 0;
-		transform: translateX(-20px);
-		animation: slideInLeft 0.4s ease forwards;
-		background: var(--bg-color);
-		box-shadow: 0 1px 4px rgba(0, 0, 0, 0.02);
+		background: var(--bg-accent);
+		font-weight: 500;
 	}
 
-	/* 链接逐个出现的动画 */
-	.mobile-nav-links a:nth-child(1) { animation-delay: 0.1s; }
-	.mobile-nav-links a:nth-child(2) { animation-delay: 0.15s; }
-	.mobile-nav-links a:nth-child(3) { animation-delay: 0.2s; }
-	.mobile-nav-links a:nth-child(4) { animation-delay: 0.25s; }
-
-	@keyframes slideInLeft {
-		to {
-			opacity: 1;
-			transform: translateX(0);
-		}
-	}
-
-	.mobile-nav-links a:hover,
-	.mobile-nav-links a.active {
+	.mobile-menu-links a:hover,
+	.mobile-menu-links a.active {
 		background: var(--accent);
-		color: white !important;
+		color: white;
 		border-color: var(--accent);
-		transform: translateX(4px) translateY(-1px);
-		box-shadow: 0 4px 16px rgba(var(--accent-rgb, 35, 55, 255), 0.2);
+		transform: translateX(4px);
+		box-shadow: 0 4px 12px rgba(var(--accent-rgb, 35, 55, 255), 0.2);
 	}
 
-	/* 菜单关闭时的动画 */
-	.nav-mobile:not(.active) .mobile-nav-links a {
-		animation: slideOutLeft 0.3s ease forwards;
+	/* Mobile Menu Footer */
+	.mobile-menu-footer {
+		padding: 1.5rem;
+		border-top: 1px solid var(--border-color);
+		background: var(--bg-accent);
 	}
 
-	@keyframes slideOutLeft {
-		from {
-			opacity: 1;
-			transform: translateX(0);
-		}
-		to {
-			opacity: 0;
-			transform: translateX(-20px);
-		}
+	/* Mobile Social Links */
+	.mobile-social-links {
+		display: flex;
+		flex-direction: column;
+		gap: 0.75rem;
+		margin-bottom: 1.5rem;
+	}
+
+	.mobile-social-link {
+		display: flex;
+		align-items: center;
+		gap: 0.75rem;
+		padding: 0.75rem 1rem;
+		color: var(--text-color);
+		text-decoration: none;
+		border-radius: 10px;
+		transition: all 0.2s ease;
+		background: var(--bg-color);
+		border: 1px solid var(--border-color);
+		font-size: 0.9rem;
+		font-weight: 500;
+	}
+
+	.mobile-social-link:hover {
+		background: var(--accent);
+		color: white;
+		border-color: var(--accent);
+		transform: translateX(4px);
+	}
+
+	.mobile-social-link svg {
+		flex-shrink: 0;
+	}
+
+	/* Mobile Theme Toggle */
+	.mobile-theme-toggle {
+		display: flex;
+		justify-content: center;
 	}
 
 	/* Responsive Design */
@@ -467,6 +518,7 @@ import { SITE_TITLE } from '../consts';
 		.nav-main {
 			display: flex;
 			justify-content: space-between;
+			align-items: center;
 			min-height: 4rem;
 			padding: 0 1rem;
 		}
@@ -479,50 +531,121 @@ import { SITE_TITLE } from '../consts';
 			display: none;
 		}
 
-		.mobile-menu-toggle {
-			display: flex;
-		}
-
-		/* Brand 在移动端居中 */
+		/* 品牌居中 */
 		.brand {
 			position: absolute;
 			left: 50%;
 			transform: translateX(-50%);
 		}
 
-		/* 移动端右侧操作区域 */
+		/* 右侧操作区域 */
 		.nav-actions {
 			gap: 1rem;
 			padding-right: 0.25rem;
 		}
 
-		.nav-mobile {
-			left: 0.5rem;
+		/* 全新汉堡菜单按钮 - 简单文字按钮 */
+		.mobile-menu-btn {
+			display: inline-flex;
+			align-items: center;
+			justify-content: center;
+			padding: 0.5rem 0.75rem;
+			background: var(--bg-accent);
+			color: var(--text-color);
+			border: 1px solid var(--border-color);
+			border-radius: 8px;
+			font-size: 0.875rem;
+			font-weight: 500;
+			cursor: pointer;
+			transition: all 0.2s ease;
+			text-decoration: none;
+		}
+
+		.mobile-menu-btn:hover {
+			background: var(--accent);
+			color: white;
+			border-color: var(--accent);
+		}
+
+		/* 隐藏汉堡图标，使用文字 */
+		.hamburger-line {
+			display: none;
+		}
+
+		/* 移动端菜单 - 简单下拉设计 */
+		.mobile-menu {
+			position: absolute;
+			top: 100%;
 			right: 0.5rem;
-		}
-	}
-
-	@media (max-width: 480px) {
-		header {
-			padding: 0.25rem;
-		}
-
-		.nav-main {
-			min-height: 3.75rem;
-			padding: 0 0.75rem;
-		}
-
-		.brand h1 {
-			font-size: 1.125rem;
+			width: 280px;
+			max-width: calc(100vw - 2rem);
+			background: var(--bg-color);
+			border: 1px solid var(--border-color);
+			border-radius: 12px;
+			box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+			opacity: 0;
+			visibility: hidden;
+			transform: translateY(-10px);
+			transition: all 0.2s ease;
+			z-index: 1000;
+			margin-top: 0.5rem;
 		}
 
-		.mobile-nav-links {
-			padding: 1.25rem;
+		.mobile-menu.active {
+			opacity: 1;
+			visibility: visible;
+			transform: translateY(0);
 		}
 
-		.mobile-nav-links a {
-			padding: 0.875rem 1rem;
-			font-size: 0.9rem;
+		/* 隐藏侧边栏相关元素 */
+		.mobile-menu-overlay {
+			display: none;
+		}
+
+		.mobile-menu-content {
+			position: static;
+			width: 100%;
+			height: auto;
+			background: transparent;
+			border: none;
+			box-shadow: none;
+			transform: none;
+			display: block;
+			overflow: visible;
+		}
+
+		.mobile-menu-header {
+			display: none;
+		}
+
+		/* 简化链接样式 */
+		.mobile-menu-links {
+			padding: 1rem;
+			display: flex;
+			flex-direction: column;
+			gap: 0.25rem;
+		}
+
+		.mobile-menu-links a {
+			display: block;
+			padding: 0.75rem 1rem;
+			color: var(--text-color);
+			text-decoration: none;
+			border-radius: 8px;
+			transition: all 0.2s ease;
+			background: transparent;
+			font-weight: 500;
+			border: none;
+		}
+
+		.mobile-menu-links a:hover {
+			background: var(--bg-accent);
+			color: var(--text-color);
+		}
+
+		/* 隐藏页脚 */
+		.mobile-menu-footer {
+			display: none;
 		}
 	}
 
@@ -540,8 +663,7 @@ import { SITE_TITLE } from '../consts';
 	}
 
 	/* Navigation link styles with higher specificity */
-	.nav-links a,
-	.mobile-nav-links a {
+	.nav-links a {
 		padding: 0.75rem 1rem;
 		color: var(--text-color) !important;
 		border: 1px solid transparent;
@@ -556,23 +678,20 @@ import { SITE_TITLE } from '../consts';
 	}
 
 	/* 主题过渡时的特殊处理 */
-	:global(html.theme-transitioning) .nav-links a,
-	:global(html.theme-transitioning) .mobile-nav-links a {
+	:global(html.theme-transitioning) .nav-links a {
 		transition: color 0.5s cubic-bezier(0.4, 0, 0.2, 1) !important,
 					border-bottom-color 0.5s cubic-bezier(0.4, 0, 0.2, 1) !important,
 					background-color 0.5s cubic-bezier(0.4, 0, 0.2, 1) !important;
 	}
 
-	.nav-links a.active,
-	.mobile-nav-links a.active {
+	.nav-links a.active {
 		background: var(--accent);
 		color: white !important;
 		border-color: var(--accent);
 		box-shadow: 0 2px 8px rgba(var(--accent-rgb, 35, 55, 255), 0.3);
 	}
 
-	.nav-links a:hover,
-	.mobile-nav-links a:hover {
+	.nav-links a:hover {
 		background: var(--accent);
 		color: white !important;
 		border-color: var(--accent);
@@ -585,27 +704,7 @@ import { SITE_TITLE } from '../consts';
 		transition: color 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
 	}
 
-	/* Mobile Backdrop */
-	.mobile-backdrop {
-		position: fixed;
-		top: 0;
-		left: 0;
-		width: 100%;
-		height: 100%;
-		background: rgba(0, 0, 0, 0.5);
-		opacity: 0;
-		visibility: hidden;
-		transition: all 0.3s ease;
-		z-index: 40;
-		backdrop-filter: blur(4px);
-		pointer-events: none;
-	}
 
-	.nav-mobile.active ~ .mobile-backdrop {
-		opacity: 1;
-		visibility: visible;
-		pointer-events: auto;
-	}
 
 	/* 暗色主题适配 */
 	:global([data-theme="dark"]) .header-inner {
@@ -623,78 +722,91 @@ import { SITE_TITLE } from '../consts';
 </style>
 
 <script>
-	// Mobile menu toggle functionality
-	document.addEventListener('DOMContentLoaded', () => {
-		const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
-		const mobileNav = document.querySelector('.nav-mobile');
-		const mobileBackdrop = document.querySelector('.mobile-backdrop');
+	// 极简移动菜单功能
+	class SimpleMobileMenu {
+		private menuBtn: HTMLButtonElement | null = null;
+		private menu: HTMLDivElement | null = null;
+		private menuLinks: NodeListOf<HTMLAnchorElement> | null = null;
 
-		if (mobileMenuToggle && mobileNav && mobileBackdrop) {
-			// 菜单切换函数
-			function toggleMobileMenu() {
-				if (!mobileNav || !mobileMenuToggle) return;
+		constructor() {
+			this.init();
+		}
 
-				// 添加点击动画
-				mobileMenuToggle.classList.add('clicking');
-				setTimeout(() => {
-					mobileMenuToggle.classList.remove('clicking');
-				}, 300);
+		init() {
+			this.menuBtn = document.getElementById('mobile-menu-btn') as HTMLButtonElement;
+			this.menu = document.getElementById('mobile-menu') as HTMLDivElement;
+			this.menuLinks = this.menu?.querySelectorAll('a') as NodeListOf<HTMLAnchorElement>;
 
-				const isActive = mobileNav.classList.contains('active');
-
-				if (isActive) {
-					// 关闭菜单
-					mobileNav.classList.remove('active');
-					mobileMenuToggle.classList.remove('active');
-					mobileMenuToggle.setAttribute('aria-expanded', 'false');
-					mobileMenuToggle.setAttribute('aria-label', 'Open mobile menu');
-				} else {
-					// 打开菜单
-					mobileNav.classList.add('active');
-					mobileMenuToggle.classList.add('active');
-					mobileMenuToggle.setAttribute('aria-expanded', 'true');
-					mobileMenuToggle.setAttribute('aria-label', 'Close mobile menu');
-				}
+			if (!this.menuBtn || !this.menu) {
+				return;
 			}
 
-			mobileMenuToggle.addEventListener('click', toggleMobileMenu);
+			this.bindEvents();
+		}
 
-			// 点击背景遮罩关闭菜单
-			mobileBackdrop.addEventListener('click', toggleMobileMenu);
-
-			// Close mobile menu when clicking outside
-			document.addEventListener('click', (e) => {
-				const target = e.target as Node;
-				if (target && mobileMenuToggle && !mobileMenuToggle.contains(target) && !mobileNav.contains(target)) {
-					if (mobileNav.classList.contains('active')) {
-						mobileNav.classList.remove('active');
-						mobileMenuToggle.classList.remove('active');
-						mobileMenuToggle.setAttribute('aria-expanded', 'false');
-						mobileMenuToggle.setAttribute('aria-label', 'Open mobile menu');
-					}
-				}
+		bindEvents() {
+			// 切换菜单
+			this.menuBtn?.addEventListener('click', (e: Event) => {
+				e.preventDefault();
+				this.toggleMenu();
 			});
 
-			// Close mobile menu on window resize if it gets too wide
-			window.addEventListener('resize', () => {
-				if (window.innerWidth > 768) {
-					mobileNav.classList.remove('active');
-					mobileMenuToggle.classList.remove('active');
-					mobileMenuToggle.setAttribute('aria-expanded', 'false');
-					mobileMenuToggle.setAttribute('aria-label', 'Open mobile menu');
-				}
-			});
-
-			// Close menu when clicking on a link
-			const mobileLinks = mobileNav.querySelectorAll('a');
-			mobileLinks.forEach(link => {
+			// 点击链接关闭菜单
+			this.menuLinks?.forEach((link: HTMLAnchorElement) => {
 				link.addEventListener('click', () => {
-					mobileNav.classList.remove('active');
-					mobileMenuToggle.classList.remove('active');
-					mobileMenuToggle.setAttribute('aria-expanded', 'false');
-					mobileMenuToggle.setAttribute('aria-label', 'Open mobile menu');
+					this.closeMenu();
 				});
 			});
+
+			// 点击外部关闭菜单
+			document.addEventListener('click', (e: Event) => {
+				if (!this.menuBtn?.contains(e.target as Node) && 
+					!this.menu?.contains(e.target as Node)) {
+					this.closeMenu();
+				}
+			});
+
+			// ESC 键关闭
+			document.addEventListener('keydown', (e: KeyboardEvent) => {
+				if (e.key === 'Escape') {
+					this.closeMenu();
+				}
+			});
 		}
-	});
+
+		toggleMenu() {
+			if (this.isOpen()) {
+				this.closeMenu();
+			} else {
+				this.openMenu();
+			}
+		}
+
+		openMenu() {
+			this.menu?.classList.add('active');
+		}
+
+		closeMenu() {
+			this.menu?.classList.remove('active');
+		}
+
+		isOpen(): boolean {
+			return this.menu?.classList.contains('active') ?? false;
+		}
+	}
+
+	// 初始化
+	function initSimpleMobileMenu() {
+		new SimpleMobileMenu();
+	}
+
+	// 多种初始化方式
+	if (document.readyState === 'loading') {
+		document.addEventListener('DOMContentLoaded', initSimpleMobileMenu);
+	} else {
+		initSimpleMobileMenu();
+	}
+
+	// Astro 页面加载事件
+	document.addEventListener('astro:page-load', initSimpleMobileMenu);
 </script>
